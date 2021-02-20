@@ -1,0 +1,104 @@
+\chapter*{2. Probability}
+
+\section*{2.2. Rules for three events}
+\begin{enumerate}[(a)]
+    \item Consider three events, $A$, $B$, and $C$. 
+        If they are all independent of each other,
+        show that
+        \begin{equation*}\tag{2.76}
+            P(A \text{ and } B \text{ and } C) = P(A) \cdot P(B) \cdot P(C) 
+        \end{equation*}
+
+    \item If they are (possibly) dependent, show that 
+        \begin{equation*}\tag{2.77}
+            P(A \text{ and } B \text{ and } C) = P(A) \cdot P(B | A) \cdot P(C | A \text{ and } B) 
+        \end{equation*}
+
+    \item If they are all mutually exclusive, show that
+        \begin{equation*}\tag{2.78}
+            P(A \text{ or } B \text{ or } C) = P(A) + P(B) + P(C)
+        \end{equation*}
+
+    \item If they are (possibly) nonexclusive, show that
+        \begin{align*}\tag{2.79}
+            P(A \text{ or } B \text{ or } C) =& P(A) + P(B) + P(C) \\
+                                          &- P(A \text{ and } B) - P(A \text{ and } C) - P(B \text{ and } C) \\
+                                          &+ P(A \text{ and } B \text{ and } C)
+        .\end{align*}
+\end{enumerate}
+
+\begin{proof}
+    \hfill
+    \begin{enumerate}[(a)]
+        \item Using (2.9) we find that:
+            \[
+                P(A \text{ and } B \text{ and } C) = P(A) \cdot P(B \text{ and } C | A) 
+                = P(A) \cdot P(B | A) \cdot P(C | A \text{ and } B)
+            .\] 
+            Because the events are independent, $P(B | A) = P(B)$ and $P(C | A \text { and } B) = P(C)$, so
+            \begin{equation*}\tag{2.76}
+                P(A \text{ and } B \text{ and } C) = P(A) \cdot P(B) \cdot P(C). 
+            \end{equation*}
+
+        \item Proved at (a).
+
+        \item By (2.18), 
+            \begin{align*}
+                P(A \text{ and } B \text{ and } C) 
+                    &= P(A) + P(B \text{ or } C) - P(A \text{ and } (B \text{ or } C)) \\
+                    &= P(A) + P(B) + P(C) - P(B \text{ and } C) - P(A) \cdot P(B \text{ or } C | A)
+            .\end{align*}
+
+            We compute the subtracted member:
+            \begin{align*}
+                P(A) \cdot P(B \text{ or } C | A) 
+                    &= P(A) \cdot (P(B|A) + P(C|A) - P(B \text{ and } C | A))) \\
+                    &= P(A \text{ and } B) + P(A \text{ and } C) - P(A \text{ and } B \text{ and } C)
+            .\end{align*}
+
+            By substituting in the initial expression, we get:
+            \begin{align*}\tag{2.79}
+                P(A \text{ or } B \text{ or } C) =& P(A) + P(B) + P(C) \\
+                                              &- P(A \text{ and } B) - P(A \text{ and } C) - 
+                                                P(B \text{ and } C) \\
+                                              &+ P(A \text{ and } B \text{ and } C)
+            .\end{align*}
+
+            Since the events are mutually exclusive, all $\emph{and}$ probabilities are 0, so:
+            \begin{equation*}\tag{2.78}
+                P(A \text{ or } B \text{ or } C) = P(A) + P(B) + P(C)
+            \end{equation*}
+
+        \item Proved at (c).
+    \end{enumerate}
+\end{proof}
+
+\section*{2.7. Proofreading}
+Two people each proofread the same book. One person finds 100 errors, and the other finds 60. 
+There are 20 errors common to both people. Assume that all errors are equally likely to be found (which is 
+undoubtedly not true in practice), and also that the discovery of an error by a person is independent
+of the discovery of that error by the other person. Given these assumptions, roughly how many error 
+does the book have? $\emph{Hint:}$ Draw the picture similar to Fig. 2.1, and then find the probability 
+of each person finding a given error.
+
+\vspace{2em}
+
+\begin{proof}
+    \hfill
+
+    Let $P(A)$ be the probability that a random error is one of the errors discovered 
+    by the person with 100 errors, and respectively let $P(B)$ be the same for the person with 60 errors.
+    Also, let $N$ be the approximate number of total errors.
+    Since the discoveries of errors are independent events, 
+    \[
+        P(A \text{ and } B) = P(A) \cdot P(B) = \frac{100}{N} \cdot \frac{60}{N} = \frac{6000}{N^2}
+    .\] 
+    But we know that 20 errors are common between the two persons, so
+    \[
+        P(A \text{ and } B) = \frac{20}{N}
+    .\] 
+    Therefore, we get the approximated total number of errors:
+    \[
+        \frac{20}{N} = \frac{6000}{N^2} \iff N = 300
+    .\] 
+\end{proof}

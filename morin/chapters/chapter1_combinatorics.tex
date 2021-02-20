@@ -1,0 +1,438 @@
+\chapter{Combinatorics}
+
+\section*{1.1. Assigning seats}
+Six girls and four boys are to be assigned to ten seats in a row, with the stipulations
+that a girl sits in the third seat and a boy sits in the eighth seat. How many arrangements
+are possible?
+
+\vspace{1em}
+
+\begin{proof}
+    We compute the number of ways that the boy on the eighth seat and the girl on the third seat can be chosen:
+    \[
+        \binom{6}{1}\binom{4}{1} = 24
+    \]
+
+    Now, we see how many ways the other kids can be placed on the seats:
+    \[
+        !8 = 40,320
+    \]
+
+    Our final result is:
+    \[
+        24 \cdot 40,320 = 967,680
+\]
+\end{proof}
+
+\section*{1.2. Number of outcomes}
+One person rolls two six-sided dice, and another person flips six two-sided coins.
+Which setup has the larger number of possible outcomes, assuming that the order matters?
+
+\vspace{1em}
+
+\begin{proof}
+    The two dice rolls have $6^2 = 36$ possible outcomes, while the coin flips have $2^6 = 64$ outcomes.
+\end{proof}
+
+\section*{1.3. Subtracting the repeats}
+\begin{enumerate}[(a)]
+    \item From Eq. (1.6) we know that the number of ordered sets of three people chosen from five people
+        is $5 \cdot 4 \cdot 3 = 60$. Reproduce this result by starting with the naive answer of $5^3 = 125$
+        ordered sets where repetitions are allowed, and then subtracting off the number of triplets that have
+        repeated people.
+    \item It's actually not much more difficult to solve this problem in the general case where triplets
+        are chosen from N people, instead of five. Repeat part (a) for a general N.
+\end{enumerate}
+
+\vspace{1em}
+
+\begin{proof}
+    \hfill
+    \begin{enumerate}[(a)]
+        \item The number of triplets that have three repeating people is obviously $5$, while the number of 
+            triplets with two repetitions is given by $5 \cdot 4 \cdot 2 + 5 \cdot 1 \cdot 4 = 60$. 
+            Therefore, the number of ordered sets of three people chosen from five people is $125 - 60 = 65$.
+
+        \item The number of triplets that have three repeating people will be $N$, while the number of triplets
+            that have two repeating people will be $N(N - 1) \cdot 2 + N(N - 1) = 3N(N-1)$. As a result,
+            the number of ordered sets of three people chosen from five people is given by
+            $N^3 - 3N(N - 1) - N = N^3 - 3N^2 + 2N$.
+    \end{enumerate}
+\end{proof}
+
+\section*{1.4. Subtracting the repeats, again}
+Repeat the task of Problem 1.3(a), but now in the case where you pick quadruplets (instead of triplets)
+from five people.
+
+\vspace{1em}
+
+\begin{proof}
+    The number of ordered sets of 4 people chosen from five people is $5 \cdot 4 \cdot 3 \cdot 2 = 120$.
+
+    To find the number of repeating quadruplets, we split them into 3 categories:
+    \begin{enumerate}
+        \item \textbf{4 repeating people} The repeating person can be chosen in 5 ways and there is only one way
+            to order (AAAAA), so there are 5 such quadruples.
+
+        \item \textbf{3 repeating people} The repeating person can be chosen in 5 ways, and then the 
+            non-repeating person in 4 ways, thus the number of unorderd quadruples is given 
+            by $4 \cdot 5 = 20$. Since there are 4 (AAAB, AABA, ABAA, BAAA) ways to choose the 
+            order, we get $4 \cdot 20 = 80$ ordered quadruples.
+
+        \item \textbf{2 repeating people} The repeating person can be chosen in 5 ways, and the other 2 people
+            can be chosen in $\binom{4}{2} = 6$ ways. Therefore, we have $5 \cdot 30 = 50$ unordered quadruples.
+            The sets can be ordered in 12 ways, so we have $30 \cdot 12 = 360$ orderd quadruples with 2 
+            repeating people.
+
+        \item \textbf{2 groups of repeating people} The repeated persons can be chosen in $\binom{5}{2} = 10$ 
+            ways and can be ordered in 6 modes (AABB, ABAB, ABBA, BBAA, BABA, BAAB), therefore the number
+            of such sorted quadruples is 60.
+
+            Therefore, the number of ordered sets of four people from five people is 
+            \[
+                5^4 - 5 - 80 - 360 - 60 = 120
+            \] 
+    \end{enumerate}
+\end{proof}
+
+\vspace{1em}
+
+\section*{1.6. Many ways to count}
+How many different orderings are there of the six letters: A, A, A, B, B, C? \\
+How many different ways can you think of to answer this question?
+
+\vspace{1em}
+
+\begin{proof}
+    We analyze the possible orderings of the letters. The positions of the 3 A letters can be chosen 
+    in $\binom{6}{3} = 20$ ways, and then the positions of the two B letters can be chosen in
+    $\binom{3}{2} = 3$ modes. Since the C letter has the last position, we find that the number of possible
+    orderings is now $20 \cdot 3 = 60$.
+
+    The same method can be applied for any ordering of letter-possition assignments (e.g. we choose the 
+    possible positions of B and then of A and C). We'll get different formulas, but the result will be the
+    same. There are $3 \cdot 2 = 6$ such ways of computing the number of possible orderings.
+\end{proof}
+
+\section*{1.7. Commitees with a president}
+Two students are given the following problem: From $N$ people, how many ways are there to choose a committee
+of $n$ people, with one person chosen as the president? One student gives an answer of $n\binom{N}{n}$, while
+the other student gives an answer of $N\binom{N-1}{n-1}$.
+
+\begin{enumerate}[(a)]
+    \item By writing out the binomial coefficients, show that the two answers are equal.
+    \item Explain the (valid) reasonings that lead to these two (correct) answers.
+\end{enumerate}
+
+\vspace{1em}
+
+\begin{proof}
+    \hfill
+    \begin{enumerate}[(a)]
+        \item We simply rewrite the expressions to obtain the equality:
+        \[
+            n\binom{N}{n} = n\frac{N!}{n!(N-n)!} = \frac{N!}{(n-1)!(N-n)!} = N\frac{(N-1)!}{(n-1)!(N-n)!}
+                          = N\binom{N-1}{n-1}
+        \]
+        \item The president can be chosen in $N$ ways and then the rest of the group can be chosen in 
+            $\binom{N-1}{n-1}$ modes, giving us $N\binom{N-1}{n-1}$ ways to form the committee.
+
+            Without thinking about the president, the commitee can be chosen in $\binom{N}{n}$ ways. In 
+            such a committee any of the $n$ persons can be chosen as the president. Therefore, we have 
+            $n\binom{N}{n}$ ways to form the committee.
+    \end{enumerate}
+\end{proof}
+
+\section*{1.8. Multinomial coefficients}
+\begin{enumerate}[(a)]
+    \item A group of ten people are divided into three committees. Three people are on committee
+        A, two are on committee B, and five are on committee C. How many different ways are there 
+        to divide up the people?
+
+    \item
+        A group of N people are divided into k committees. $n_1$ people are on committee 1, $n_2$
+        people are on committee 2, \dots, and $n_k$ people are on committee $k$, with 
+        $n_1 + n_2 + \dots + n_k = N$. How many different ways are there to divide up the people?
+\end{enumerate}
+
+\vspace{1em}
+
+\begin{proof}
+    \hfill
+    \begin{enumerate}[(a)]
+        \item The people on committee A can be chosen in $\binom{10}{3} = 120$ ways and then the people on
+            committee B can be chosen in $\binom{7}{2} = 21$ ways. The remaining people will be on the C
+            committee. As a result, the group of ten people can be divided in $120 \cdot 21 = 2,520$ ways.
+        
+        \item We assign people to committees like in the previous example. The 1st committee's members
+            can be chosen in $\binom{N}{n_1}$ modes, the 2nd committee's composition can be chosen in 
+            $\binom{N - n_1}{N_2}$ ways, and so on. We observe (and can prove using induction), that the
+            number of ways the i-th ($2 \leq i < k$) committee can be assembled is given by the expression:
+            \[
+                M_i = \binom{N - n_1 - \ldots - n_{i - 1}}{n_i}
+            \]
+            Therefore, the number of ways the group of people can be divided is given by:
+            \begin{align*}
+                M = \binom{N}{n_1} \prod_{i = 2}^{k}M_i 
+                    =& \binom{N}{n_1} \binom{N - n_1}{n_2} \ldots \binom{N - n_1 - \ldots - n_{k - 1}}{n_k} \\
+                    =& \frac{N!}{n_1! (N - n_1)!} \cdot \frac{(N - n_1)!}{n_2! (N - n_1 - n_2)!} \cdot \ldots 
+                    \cdot \frac{(N - n_1 - \ldots - n_{k - 1})!}{n_3! (N - n_1 - \ldots - n_{k - 1} - n_k)!} \\
+                    =& \frac{N!}{n_1!n_2! \ldots n_k!}
+            \end{align*}
+    \end{enumerate}
+\end{proof}
+
+\section*{1.9. One heart and one 7}
+How many different five-card poker hands contain exactly one heart and exactly one 7? (If the hand
+contains the 7 of hearts, then this one card satisfies both requirements.)
+
+\vspace{1em}
+
+\begin{proof}
+    There are $52 - 13 - 4 + 1 = 36$ cards that are neither a heart nor a 7. We consider two cases:
+    \begin{enumerate}[(i)]
+        \item \textbf{The 7 of hearts is in the hand}, so the other 4 cards in the hand
+            can be any that are neither a heart nor a 7. As a result, we have 
+            $\binom{36}{4}= 58,905$ such hands.
+
+        \item \textbf{The 7 of hearts is not in the hand.} There are 12 cards that are hearts and 
+            not a 7 and 3 cards that are 7 but not a heart. We choose one of each and the rest of 
+            the cards can be any that are neither a heart nor a 7. Hence, we get
+            $12 \cdot 3 \binom{36}{3} = 257,040$ such hands.
+    \end{enumerate}
+    In conclusion, there are $286,110 + 257,040 = 315,945$ five-card hands that contain exactly
+    one heart and exactly one 7.
+\end{proof}
+
+
+\section*{1.14. Yahtzee}
+In the game of Yahtzee, five dice are rolled in a group, with the order not mattering.
+
+\begin{enumerate}[(a)]
+    \item Using Eq. (1.16), how many unordered rolls (sets) are possible?
+
+    \item In the spirit of the examples at the beginning of Section 1.7. reproduce the
+        result in part (a) by determining how many unordered rolls there are
+        of each general type (for example, three of one number and two of another, etc.)
+
+    \item In the spirit of the example at the end of Section 1.7., show that the total
+        number of \emph{ordered} Yahtzee rolls is $6^5 = 7776$.
+\end{enumerate}
+
+\vspace{1em}
+
+\begin{proof}
+    \hfill
+    \begin{enumerate}[(a)]
+        \item The number of unordered rolls is given by 
+            \[
+                \binom{5 + (6 - 1)}{6 - 1} = \binom{10}{5} = 252
+            \] 
+
+        \item We split the rolls in 7 types:
+            \begin{enumerate}[(1)]
+                \item All five rolls are the same (e.g. 66666). There are 6 sets of this type.
+
+                \item Four rolls have the same value and the other roll has another value (e.g. 66665).
+                    There are $6 \cdot 5 = 30$ sets of this type.
+                
+                \item Three rolls have the same value and the other two rolls have other (different 2 by 2)
+                    values (e.g. 66654). There are  $6 \binom{5}{2} = 6 \cdot 10 = 60$ sets of this type.
+
+                \item Three rolls have the same value and the other two rolls have both another (same) value 
+                    (e.g. 66655). There are $6 \cdot 5 = 30$ sets of this type.
+
+                \item Two rolls have the same value and the other three rolls have different (2 by 2) values
+                    (e.g. 66654). There are $6 \binom{5}{2} = 60$ such sets.
+
+                \item Two rolls have the same value, two rolls have another (same value) and the 
+                    remaining roll has another different value (e.g. 66554). 
+                    There are $6 \binom{5}{2} = 60$ such sets of rolls.
+
+                \item Each roll has a different value. (e.g. 65432). There are $\binom{6}{5} = 6$ such sets.
+            \end{enumerate}
+
+        By summing all the types, we get that the number of unordered rolls is 
+        \[
+            6 + 30 + 60 + 30 + 60 + 60 + 6 = 252
+        \] 
+
+    \item We want to see in how many ways can the 5 roll types be ordered:
+        \begin{enumerate}[(1)]
+            \item All rolls are the same, so the set can be ordered in one way. The number of 
+                ordered sets with the same 5 rolls is 6.
+
+            \item Four rolls have the same value and the other roll has another value.
+                The set can be ordered in 5 ways (we consider the different roll on each
+                possible position). Therefore, there are $5 \cdot 30 = 150$ ordered sets of this type.
+
+            \item Three rolls have the same value and the other two have other (different 2 by 2) values.
+                The positions of the repeated values can be chosen in $\binom{5}{3} = 10$ and then there 
+                are two ways to order the other values, so there are $10 \cdot 2 = 20$ ways to order the set.
+                As a result, there are $20 \cdot 60 = 1200$ ordered sets of this type.
+
+            \item Three rolls have the same value and the other two rolls have both another (same) value.
+                There are $\binom{5}{3} = 10$ ways the sets can be ordered, so we get $10 \cdot 30 = 300$
+                such ordered sets.
+
+            \item Two rolls have the same value and the other three have other (different 2 by 2) values.
+                As before, we find that the set of values can be ordered in 
+                $\binom{5}{2} \cdot 3 \cdot 2 = 60$ ways.
+                Hence, there are $60 \cdot 60 = 3600$ such ordered sets.
+
+            \item Two rolls have the same value, two rolls have another (same value) and the 
+                remining roll has another differente value. There are 
+                $\binom{5}{2}\binom{3}{2} = 10 \cdot 3 = 30$ ways to order this set, so we get 
+                $30 \cdot 60 = 1800$ such ordered sets.
+
+            \item All rolls have different values. The sets can be ordered in $5! = 120$ ways. As a result,
+                there are $120 \cdot 6 = 720$ such ordered sets.
+        \end{enumerate}
+
+        In conclusion, we get that the number of $\emph{ordered}$ sets of Yahtzee rolls is:
+        \[
+            6 + 150 + 1200 + 300 + 3600 + 1800 + 720 = 7776 = 6^5
+        \] 
+    \end{enumerate}
+\end{proof}
+
+\section*{1.16. Pascal sum 2}
+At the end of Section 1.8.3, we demonstrated the relation 
+$\binom{n}{k} = \binom{n - 1}{k - 1} + \binom{n - 1}{k}$
+by using the argument involving committees. Repeat this reasoning,
+but now in terms of:
+\begin{enumerate}[(a)]
+    \item coin flips,
+    \item the $(a + b)^n$ binomial expansion.
+\end{enumerate}
+
+\vspace{1em}
+
+\begin{proof}
+    \hfill
+    \begin{enumerate}[(a)]
+        \item The number of ways we can get $k$ tails from $n$ coin flips is given by 
+            $\binom{n}{k}$. If we single out the first flip, we get two cases:
+            \begin{enumerate}[(1)]
+                \item The flip was heads, so the number of ways to get tails $k$ times
+                    from the rest $n - 1$ of the flips is $\binom{n - 1}{k}$
+
+                \item The flip was tails, so the number of ways to get the remaining 
+                    $k - 1$ tails flips from the other $n - 1$ rolls is given by $\binom{n - 1}{k - 1}$
+            \end{enumerate}
+
+        Therefore, the number of ways we get $k$ tails from $n$ coin flips can be split into the above
+        two cases, so:
+        \[
+            \binom{n}{k} = \binom{n - 1}{k} + \binom{n - 1}{k - 1}
+        \] 
+
+    \item The coefficient of the term $a^{n - k}b^k$ from the expansion of $(a + b)^n$ is given by 
+        $\binom{n}{k}$. If we single out the first $(a + b)$ factor, we have two possible situations:
+        \begin{enumerate}
+            \item The factor was used in getting a power of $b$ in $a^{n - k}b^k$, so there are 
+                $\binom{n - 1}{k - 1}$ factors to use for the other $k - 1$ powers of $b$ and the $n - k$ 
+                powers of $a$, since 
+                $\binom{n - 1}{n - k} = \binom{n - 1}{k - 1}$.
+
+            \item The factor wasn't used in getting a power of $b$ in $a^{n - k}b^k$, so there are 
+                $\binom{n - 1}{k}$ factors to use for the other $k$ b powers and the other $n - k - 1$ 
+                powers of a, since $\binom{n - 1}{n - k - 1} = \binom{n - 1}{k}$.
+        \end{enumerate}
+
+    Therefore, the coefficient of $a^{n-k}b^k$ is given by:
+    \[
+        \binom{n}{k} = \binom{n - 1}{k} + \binom{n - 1}{k - 1}
+    \] 
+    \end{enumerate}
+\end{proof}
+
+\section*{1.17. Pascal diagonal sum}
+\begin{enumerate}[(a)]
+    \item If we pick an unordered committee of three people from five people (A, B, C, D, E),
+        we can list the $\binom{5}{3} = 10$ possibilities as shown in Table 1.19.
+        We have grouped them according to which letter comes first. (The order of letters
+        doesn't matter, so we've written each triplet in increasing alphabetical order.)
+        The columns in the table tell us that we can think of $10$ as equaling $6 + 3+ 1$.
+        Explain why it makes sense to write this sum as  $\binom{4}{2} + \binom{3}{2} + \binom{2}{2}$.
+
+        \begin{table}[h]
+            \centering
+            \begin{tabular}{ccc}
+                A B C & & \\ 
+                A B D & & \\
+                A B E & & \\
+                A C D & B C D & \\
+                A C E & B C E & \\
+                A D E & B D E & C D E \\
+            \end{tabular}
+            \caption*{\textbf{Table 1.19:} Unordered triplets chosen from five people.}
+        \end{table}
+
+    \item You can also see from Table 1.15 and 1.16 that, for example 
+        $\binom{6}{3} = \binom{5}{2} + \binom{4}{2} + \binom{3}{2} + \binom{2}{2}$.
+    More generally,
+    \begin{equation*}\tag{1.29}
+        \binom{n}{k} = \binom{n - 1}{k - 1} + \binom{n - 2}{k - 2} + \binom{n - 3}{k - 3} + \ldots + 
+                        \binom{k}{k - 1} + \binom{k - 1}{k - 1}
+    \end{equation*}
+
+    In words: A given number (for example, $\binom{6}{3}$) in Pascal's triangle equals the sum
+    of the numbers in the diagonal string that starts with the number that is above and to the 
+    left of the given number ($\binom{5}{2}$ in this case) and then proceeds upward to the right.
+    So the string contains $\binom{5}{2}, \binom{4}{2}, \binom{3}{2}$ and $\binom{2}{2}$
+    in this case.
+
+    Prove Eq.(1.29) by making repeated use of Eq.(1.22), which says that each number in Pascal's
+    triangle is the sum of the two numbers abot it (or just the "1" above it, if it occurs at the end 
+    of a line).
+\end{enumerate}
+
+\begin{proof}
+    \hfill
+    \begin{enumerate}[(a)]
+        \item We split the committees into 4 categories:
+            \begin{enumerate}[(1)]
+                \item The set contains A, so there are $\binom{4}{2} = 6$ such sets.
+                \item The set contains B and doesn't contain A, so there are $\binom{3}{2} = 3$ sets.
+                \item The set contains C and doesn't contain A or B, so there is $\binom{2}{2} = 1$
+                \item The set doesn't contain A, B or C. There are obviously no such sets, as we
+                    need 3 elements.
+           \end{enumerate}
+
+        Since the reunion of those sets contains all the possible unordered committees of 3 members,
+        we obtain that:
+        \[
+            \binom{4}{2} + \binom{3}{2} + \binom{2}{2} = 6 + 3 + 1 = 10 = \binom{5}{3}
+        \] 
+        
+        \item We prove using induction that:
+        \begin{equation*}\tag{1.29}
+            \binom{n}{k} = \binom{n - 1}{k - 1} + \binom{n - 2}{k - 2} + \ldots + 
+                            \binom{k}{k - 1} + \binom{k - 1}{k - 1}
+                            = \sum_{i = k}^{n} \binom{i - 1}{k - 1}, \forall k \in \mathbb{N^*}, k \leq n
+        \end{equation*}
+        for all $n \in \mathbb{N}, n \geq 2$.
+
+        The base case is obviously valid, since
+        \begin{align*}
+            \binom{2}{1} &= \binom{1}{0} + \binom{0}{0} = 1 + 1 = 2 \\
+            \binom{2}{2} &= \binom{1}{1} + \binom{0}{1} = 1 + 0 = 1
+        \end{align*}
+
+        We assume that the relation holds for a fixed $m \in \mathbb{N}, m \geq 2$, so we have:
+        \[
+            \binom{m}{k} = \sum_{i = k}^{m}\binom{i - 1}{k - 1}, \forall k \in \mathbb{N^*}, k \leq n
+        \]
+
+        Using (1.22), we obtain that: 
+        \[
+            \binom{m + 1}{k} = \binom{m}{k} + \binom{m}{k - 1} 
+                             = \sum_{i = k}^{m}\binom{i - 1}{k - 1} + \binom{m}{k - 1} 
+                             = \sum_{i = k}^{m + 1}\binom{i - 1}{k - 1} 
+        \] 
+
+        Since (1.22) holds true for the base case and the $m$ case implies the validity of the $m + 1$ case,
+        we proved using induction that (1.29) holds for all $n \in \mathbb{N}, n \geq 2$.
+    \end{enumerate}
+\end{proof}

@@ -81,14 +81,14 @@ of the discovery of that error by the other person. Given these assumptions, rou
 does the book have? $\emph{Hint:}$ Draw the picture similar to Fig. 2.1, and then find the probability 
 of each person finding a given error.
 
-\vspace{2em}
+\vspace{1em}
 
 \begin{proof}
     \hfill
 
     Let $P(A)$ be the probability that a random error is one of the errors discovered 
     by the person with 100 errors, and respectively let $P(B)$ be the same for the person with 60 errors.
-    Also, let $N$ be the approximate number of total errors.
+    Also, let $N$ be the estimated number of total errors.
     Since the discoveries of errors are independent events, 
     \[
         P(A \text{ and } B) = P(A) \cdot P(B) = \frac{100}{N} \cdot \frac{60}{N} = \frac{6000}{N^2}
@@ -97,8 +97,340 @@ of each person finding a given error.
     \[
         P(A \text{ and } B) = \frac{20}{N}
     .\] 
-    Therefore, we get the approximated total number of errors:
+    Therefore, we get the estimated total number of errors:
     \[
         \frac{20}{N} = \frac{6000}{N^2} \iff N = 300
     .\] 
+\end{proof}
+
+\section*{2.9. Sock pairs}
+\begin{enumerate}[(a)]
+    \item Four red socks and four blue socks are in a drawer. You reach in and pull out two socks at random.
+        What is the probability that you obtain a matching pair?
+
+    \item Answer the same question, but now in the general case with $n$ red socks and $n$ blue socks.
+
+    \item Presumably you answered the above questions by counting the relevant pairs of socks.
+        Can you think of a quick probability argument, requiring no counting, that gives the
+        answer to part (b) (and part(a))?
+\end{enumerate}
+
+\vspace{1em}
+
+\begin{proof}
+    \hfill
+    \begin{enumerate}[(a)]
+        \item The total number of possible extracted pairs is $\binom{8}{2} = 28$ and the number
+            of possible matching pair (of any color) extractions is $2 \cdot \binom{4}{2} = 12$. 
+            Therefore, the probability of pulling a matching pair is:
+            
+            \[
+                \frac{12}{28} = \frac{3}{7} \approx 0.428
+            \] 
+
+        \item As before, the total number of possible extracted pairs is $\binom{2n}{2} = n(2n - 1)$ and
+            the number of possible matching pair (of any color) extractions is 
+            $2 \cdot \binom{n}{2} = n(n - 1)$. As a result, the probability of pulling a 
+            matching pair is:
+            \[
+                \frac{n(n-1)}{n(2n - 1)} = \frac{n - 1}{2n - 1} \to \frac{1}{2}
+            \] 
+        \item The first sock can either be red or blue. After the extraction, the drawer contains
+            $2n - 1$ socks and $n - 1$ socks of the matching color, so the probability of pulling
+            a matching pair is given by:
+            \[
+                \frac{n - 1}{2n - 1} \to \frac{1}{2}
+            \] 
+    \end{enumerate}
+\end{proof}
+
+\section*{2.11 At least one 6}
+Three dice are rolled. What is the probability of obtaining at least one 6? We solved
+this in Section 2.3.1, but your task here is to solve it the long way, by adding up the
+probabilities of obtaining exactly one, two, or three 6's.
+
+\begin{proof}
+    Since each dice can take values from 1 to 6, the dices can be rolled in $6^3 = 216$ ways. 
+    Then, there are $3 \cdot 5 \cdot 5 = 75$ ways in which only one dice is a 6 (we assume
+    each individual dice rolls a 6 and the other two roll differently), so the probability 
+    of doing that is $\frac{75}{216}$. Also, there are $3 \cdot 5 = 15$  
+    ways of having exactly two 6 dices, so the probability of this event is $\frac{15}{216}$. 
+    Finally, the event of having all dices being rolled as sixes can occur in only one way, so the 
+    probability of it happening is $\frac{1}{216}$. In conclusion, the probability of rolling at least a 6 
+    from three dice rolls is given by:
+    \[
+        \frac{75}{216} + \frac{15}{216} + \frac{1}{216} = \frac{91}{216} \approx 0.421
+    \] 
+\end{proof}
+
+\section*{2.15 My birthday}
+\begin{enumerate}[(a)]
+    \item You are in a room with 100 other people. Let $p$ be the probability that at least one
+        of these 100 people has your birthday. Without doing any calculations, state whether $p$ 
+        is larger, smaller, or equal to 100/365.
+
+    \item Now calculate the exact value of $p$.
+\end{enumerate}
+
+\begin{proof}
+    \hfill
+    \begin{enumerate}[(a)]
+        \item Assuming all birthdays are equally likely to be encountered and that a year has 365 days,
+            the probability that at least one person of the 100 has the same birthday as me is strictly less
+            than $\frac{100}{365}$, since some people may have the same birthday and only unique
+            birthdays are counted. The $\frac{100}{365}$ probability would be acquired if we consider 
+            the 100 people in the room as having unique birthdays.
+
+        \item The probability that a random person doesn't have the same birthday as me is $\frac{364}{365}$,
+            so the probability that none of the 100 people in the room has the same birthday as me is
+            $(\frac{365}{365})^{100}$. Therefore, the probability that at least one of them has the 
+            same birthday as me is:
+            \[
+                p = 1 - \bigg(\frac{364}{365}\bigg)^{100} \approx 0.24
+            \] 
+    \end{enumerate}
+\end{proof}
+
+\section*{2.16. My birthday, again}
+We saw at the end of Section 2.4.1 that 253 is the answer to the question, "How many people (in addition to
+me) need to be present in order for there to be at least a 1/2 chance that someone else has $\emph{my}$ 
+birthday?" We solved this by finding the smallest $n$ for which $(364/365)^n$ is less than 1/2. Answer
+this question again, by making use of the approximation in Eq. (7.14) in Appendix C. What is the answer
+in the general case where there are N days in a year instead of 365? Assume N is large.
+
+\vspace{1em}
+
+\begin{proof}
+    We are given the approximation formula:
+    \begin{equation*}\tag{7.14}
+        (1 + a)^n \approx e^{na}
+    \end{equation*}
+
+    We consider two cases:
+    \begin{enumerate}[(1)]
+        \item A year has 365 days. We've seen in the previous exercise that the probability that at 
+            least one of $n$ given people has the same birthday as me is given by the expression:
+            \[
+                p_n = 1 - \bigg(\frac{364}{365}\bigg)^n 
+            \] 
+
+            Let's assume that $p_n \approx \frac{1}{2}$, then:
+            \[
+                \bigg(\frac{364}{365}\bigg)^n \approx \frac{1}{2} \iff
+                \bigg(1 - \frac{1}{365}\bigg)^n \approx \frac{1}{2} 
+            \] 
+
+            Using (7.14), we have that:
+            \[
+               e^{-\frac{n}{365}} \approx \frac{1}{2}
+            \] 
+
+            By taking the logarithm of both sides and then negating the terms, we see that 
+            $\frac{n}{365} \approx \ln{2}$, so the number of people that should be present such
+            that there is a least $\frac{1}{2}$ chance that someone else has my birthday is:
+            \[
+                n = 365 \ln{2} \approx 253 
+            \] 
+
+        \item A year has $N$ days. Similarly to the previous exercise, we see that the probability
+            of a person not having the same birthday as me is $\frac{N - 1}{N}$. Then it is 
+            easily deduced that the probability of a person having the same birthday as me is:
+            \[
+                p_n = 1 - \bigg(\frac{N - 1}{N}\bigg)^n 
+            \] 
+
+            Let's assume that $p_n \approx \frac{1}{2}$, then:
+            \[
+                \bigg(\frac{N - 1}{N}\bigg)^n \approx \frac{1}{2} \iff
+                \bigg(1 - \frac{1}{N}\bigg)^n \approx \frac{1}{2} 
+            \] 
+
+            Using (7.14), we have that:
+            \[
+               e^{-\frac{n}{N}} \approx \frac{1}{2}
+            \] 
+
+            By taking the logarithm of both sides and then negating the terms, we see that 
+            $\frac{n}{N} \approx \ln{2}$, so the number of people that should be present such
+            that there is a least $\frac{1}{2}$ chance that someone else has my birthday is:
+            \[
+                n \approx N\ln{2} \approx 0.693N
+            \]
+    \end{enumerate}
+\end{proof}
+
+\section*{2.18. A random game-show host}
+Consider the following variation of the Game-Show Problem we discussed in Section 2.4.2. A game-show
+host offers you the choice of three doors. Behind one of these doors is the grand prize, and behind
+the other two are goats. The host announces that after you select a door (without opening it), he will
+$\emph{randomly}$ open one of the other doors, and the result happens to be a goat. He then offers
+you the chance to switch your choice to the remaining door. Should you switch or not? Or does it 
+not matter?
+
+\vspace{1em}
+
+\begin{proof}
+    Since the doors can be reordered and not change the setup of the problem, we can pick the first
+    door without loss of generality. There are three equally likely possibilities
+    for what is behind the three doors: PGG, GPG, and GGP, where P denotes the prize and G denotes
+    a goat. Let us use the subscript $H$ to show that a door was opened by the host. Considering that
+    the host cannot choose our door (the first one), we have the following door layouts after the host 
+    opens a door:
+
+    \pagebreak
+
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{cc}
+            PG_H G & PGG_H \\ 
+            GP_HG & GPG_H \\
+            GG_HP & GGP_H
+        \end{tabular}
+    \end{table}
+
+    Since the host doesn't choose the door with the prize, those layouts have 0 probability of 
+    occuring. The encounters of the other 4 layouts are equally likely, so they have a probability 
+    of occuring of $\frac{1}{4}$. We can see that if we keep the initial choice of the door,
+    there is a $\frac{1}{2}$ possibility of winning. Likewise, if we switch the door, there 
+    is a $\frac{1}{2}$ probability of winning. Therefore, it does not matter if we switch our choice or not.
+\end{proof}
+
+\section*{2.19. Boy girl problem with general information}
+This problem is an extension of the Boy/Girl problem from Section 2.4.4. You should study that 
+problem thoroughly before tackling this one. As in the original version of the problem, assume
+that all processes are completely random. The new variation is the following:
+
+You bump into a random person on the street who says, "I have two children. At least one of them
+is a boy whose birthday is in the summer." What is the probability that the other child is also 
+a boy? What if the clause is changed to, "whose birthday is on August 11th"? Or "who was born
+during a particular minute on August 11th"? Or more generally, "who has a particular characteristic
+that occurs with probability $p$ "? $\emph{Hint:}$ Make a table of all of the various possibilities,
+analogous to the tables in Section 2.4.4.
+
+\vspace{1em}
+
+\begin{proof}
+    Without taking into account the particular characteristic, we have the following possible
+    children couples:
+    
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{c c c c}
+            BB & BG & GB & GG
+        \end{tabular}
+    \end{table}
+
+    , where B represents a boy and G a girl. Each of these groups is equally likely and
+    is encountered with a probability of $\frac{1}{4}$. If we add a subscript C to the children
+    that possess the particular characteristic, we get the following possible pairs:
+
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{c c c c}
+            B_CB_C & B_CG_C & G_CB_C & G_CG_C \\
+            B_CB & B_CG & G_CB & G_CB \\
+            BB_C & BG_C & GB_C & GG_C \\
+            BB & BG & BB & GG
+        \end{tabular}
+    \end{table}
+
+    Since the probability of a kid to have the characteristic is $p$, then the probability
+    of not having it is $1 - p$. We split the groups in 3 categories (following the 
+    lines in the table):
+    \begin{itemize}
+        \item Line 1: Both children have the characteristic. The probability that one
+            given couple is of this type is $\frac{1}{4}p^2$
+        \item Lines 2 and 3: Only one kid has the characteristic. The probability that such
+            a group is encountered is $\frac{1}{4}p(1 - p)$
+        \item Line 4: None of the kids has the characteristic. The probability that a given
+            group is in this category is $\frac{1}{4}(1 - p)^2$
+    \end{itemize}
+
+    \pagebreak
+
+    Now, we find that the groups that contain at least one boy who has the characteristic are:
+
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{c c c}
+            B_CB_C & B_CG_C & G_CB_C \\
+            B_CB & B_CG & \\
+            BB_C & & GB_C & \\
+        \end{tabular}
+    \end{table}
+
+    We have 3 groups that contain two boys and at least one of them has the characteristic
+    (first column). Also, there are a total of 7 groups containing at least a boy with the 
+    characteristic (3 groups from the first line, 2 from the second
+    line and 2 from the third line). Therefore, knowing that one children is a boy that possesses
+    the characteristic $p$, the probability that the other kid is also a boy is:
+    \[
+        P_{BB} = \frac{\frac{1}{4}p^2 + 2 \frac{1}{4}p(1 - p)}{3 \frac{1}{4}p^2 + 4 \frac{1}{4} p(1 - p)}
+        = \frac{p^2 + 2p(1 - p)}{3p^2 + 4p(1 - p)}
+        = \frac{2p - p^2}{4p - p^2} 
+        = \frac{2 - p}{4 - p}
+    \] 
+
+    In the base case, the characteristic is "having a birthday in the summer", so $p = \frac{1}{4}$.
+    We get that the probability of the other kid being a boy is:
+    \[
+        P_{BB} = \frac{2 - \frac{1}{4}}{4 - \frac{1}{4}} = \frac{7}{15} \approx 0.467
+    \] 
+
+    The second characteristic is "having a birthday on August 11th", so $p = \frac{1}{365}$.
+    The sought probability is then
+    \[
+        P_{BB} = \frac{2 - \frac{1}{365}}{4 - \frac{1}{365}} = \frac{729}{1459} \approx \frac{1}{2}
+    \] 
+
+    Finally, if the characteristic is "being born during a particular minute on August 11th", 
+    so $p = \frac{1}{365} \frac{1}{1440} = \frac{1}{525600}$
+    the probability that the other children is a boy is:
+    \[
+        P_{BB} = \frac{2 - \frac{1}{525600}}{4 - \frac{1}{525600}} = \frac{1051199}{2102399} \approx \frac{1}{2}
+    \] 
+\end{proof}
+
+\section*{2.20. A second test}
+Consider the setup in the "False positives" example in Section 2.5. If we instead perform 
+$\emph{two}$ successive tests on each person, what is the probability that a person
+who tests positive both times actually has the disease?
+
+\begin{proof}
+    The setup provided in the "False positives" example is the following:
+    \begin{itemize}
+        \item 2\% of the overall population has the disease.
+
+        \item If a person $\emph{does}$ have the disease, then the test has a 95\% chance of correctly
+            indicating that the person has it. (So 5\% of the time, the test incorrectly indicates
+            that the person doesn't have the disease.)
+
+        \item If a person $\emph{does not}$ have the disease, then the test has a 10\% chance of
+            incorrectly indicating that the person has it; this is a "false positive" result.
+            (So 90\% of the time, the test correctly indicates that the person doesn't have the 
+            disease.)
+    \end{itemize}
+
+    Let $N$ be the population number and let's consider two cases:
+    \begin{enumerate}
+        \item The person has the disease, and the tests were positive results.
+            The probability of a positive result for a diseased person is 90\%.
+            Therefore the probability of a diseased person being diagnosticated twice
+            as positive is $95\% \cdot 95\% = 90.25\%$. 2\% of the population is diseased,
+            so the number of diseased persons that are tested twice as positive is 
+            $2\%N \cdot 90.25\% = 1.805\%N$.
+
+        \item The person does not have the disease, and both tests are "false positives".
+            The probability of a "false positive" for a healthy person is 10\%.
+            As a result, the probability of a healthy person being tested twice as false positive
+            is $10\% \cdot 10\% = 1\%$. 98\% of the population is healthy, so the number
+            of healthy people that are tested twice as "false positives" is 
+            $98\%N \cdot 1\% = 0.98\%N$.
+    \end{enumerate}
+
+    Therefore, the probability of a person who tests positive both times actually has the disease
+    is:
+    \[
+        \frac{1.805\%N}{1.805\%N + 0.98\%N} = \frac{1.805\%N}{2.785\%N} \approx 0.6481 = 64.81\%
+    \] 
 \end{proof}

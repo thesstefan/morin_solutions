@@ -1,0 +1,671 @@
+\chapter*{Expectation values}
+
+\section*{3.1. Flip until heads}
+In Example 2 on page 136, we found that if you flip a coin until you get a Heads, the
+expectation value of the total number of coins is
+\begin{equation*}\tag{3.89}
+    \frac{1}{2} \cdot 1 + \frac{1}{4} \cdot 2 + 
+    \frac{1}{8} \cdot 3 + \frac{1}{16} \cdot 4 + \frac{1}{32} \cdot 5 \ldots 
+\end{equation*}
+
+We claimed that this sum equals 2. Demonstrate this by writing the sum as a
+geometric series starting with 1/2, plus another geometric series starting
+with 1/4, and so on. You can use the fact that the sum of a geometric series
+with first term $a$ and ratio $r$ is $a/(1-r)$.
+
+\vspace{1em}
+
+\begin{proof}
+    It can be easily seen that the general term of the sum is $\frac{n}{2^n}$, so
+    \[
+        S_n = \frac{1}{2} \cdot 1 + \frac{1}{4} \cdot 2 + \frac{1}{8} \cdot 3 + \frac{1}{16} \cdot 4 + 
+        \frac{1}{32} \cdot 5 + \ldots + \frac{1}{2^n} \cdot n
+        = \sum_{k = 1}^{n} \frac{n}{2^n}
+    \] 
+
+
+    We rewrite the sum and observe the suggested pattern:
+    \begin{align*}
+        \frac{1}{2} + \frac{2}{4} + \frac{3}{8} + \ldots + \frac{n}{2^n} 
+        &= \bigg(\frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \ldots + \frac{1}{2^n}\bigg)
+            + \bigg(\frac{1}{4} + \frac{1}{8} + \ldots + \frac{1}{2^n}\bigg) + \ldots
+            + \bigg(\frac{1}{2^{n - 1}} + \frac{1}{2^n}\bigg) + \frac{1}{2^n} \\
+        &= \sum_{k = 1}^{n}\bigg(\frac{1}{2}\bigg)^k + \sum_{k = 2}^{n}\bigg(\frac{1}{2}\bigg)^k + \ldots
+            + \sum_{k = n - 1}^{n}\bigg(\frac{1}{2}\bigg)^k + \sum_{k = n}^{n}\bigg(\frac{1}{2}\bigg)^k 
+    \end{align*}
+
+    By observing the fact that the sums are actually geometric series with the ratio $r = \frac{1}{2}$
+    and the first term $a = \frac{1}{2^k}$, we obtain:
+    \[
+        \sum_{k = p}^{n} \bigg(\frac{1}{2}\bigg)^k = \frac{\big(\frac{1}{2}\big)^p}{1 - \frac{1}{2}} 
+        = \bigg(\frac{1}{2}\bigg)^{p - 1}
+    \] 
+
+    Therefore, by rewriting the sum using the last expression and then applying the geometric
+    series result again, we get our desired result:
+    \[
+        S = \bigg(\frac{1}{2}\bigg)^0 + \bigg(\frac{1}{2}\bigg)^1 + \ldots + \bigg(\frac{1}{2}\bigg)^{n - 1}
+        = \sum_{k = 0}^{n - 1} \bigg(\frac{1}{2}\bigg)^k 
+        = \frac{1}{1 - \frac{1}{2}} = 2
+    \] 
+\end{proof}
+
+\section*{3.2. HT waiting time}
+We know from Example 2 on page 136 that the expected number of flips required to obtain a Heads is 2. 
+What is the expected number of flips required to obtain a Heads and a Tails in succession (in that order)?
+
+\vspace{1em}
+
+\begin{proof}
+    Since the first flip in the succession has to be Heads, we flip the coin until we obtain a Heads. 
+    It is known that the expected number of flips for that to happen is 2. Now, we need to obtain a 
+    Tails. Since Heads and Tails are equally likely in a fair coin flip, the expected number of flips
+    needed to obtain Tails is also 2. Therefore, the expected number of flips needed to obtain a 
+    Heads and Tails succession (in this order) is $2 + 2 = 4$.
+\end{proof}
+
+\section*{3.3. Sum of dependent variables}
+Consider the exameple on page 137, but now let $X$ and $Y$ be dependent in the following
+manner: If $Y = 1$, then it is always the case that $X = 1$. If  $Y = 2$, then it is always the
+case that $X = 2$. If $Y = 3$, then there are equal chances of $X$ being 1 or 2. If we assume that 
+$Y$ takes on the values 1, 2, and 3 with equal probabilities of 1/3, then you can quickly show
+that $X$ takes on the values 1 and 2 with equal probabilities of 1/2. So we have reproduced
+the probabilities in the original example. Show (by explicitly calculating the probabilites of
+the various outcomes) that in the present scenario where $X$ and $Y$ are dependent, the relation
+$E(X + Y) = E(X) + E(Y)$ still holds.
+
+\vspace{1em}
+
+\begin{proof}
+    Since we know that the $X$ takes on the values 1, 2 with equal probability, we can easily find that:
+     \[
+         E(X) = p(X = 1) \cdot 1 + p(X = 2) \cdot 2 = \frac{1}{2} + \frac{1}{2} \cdot 2 =\frac{3}{2}
+    \] 
+
+    We do the same for $Y$ to obtain:
+    \[
+        E(Y) = p(Y = 1) \cdot 1 + p(Y = 2) \cdot 2 + p(Y = 3) \cdot 3 
+        = \frac{1}{3} + \frac{2}{3} + \frac{3}{3} = 2
+    \] 
+
+    Therefore, it is straightforward that:
+    \[
+        E(X) + E(Y) = \frac{3}{2} + 2 = \frac{7}{4}
+    \] 
+
+    We continue by computing $E(X + Y)$. We'll do that by analyzing the obtained cases from the perspective
+    of  $Y$. 
+    \begin{enumerate}[(1)]
+        \item We know that there is a  $\frac{1}{3}$ probability that $Y = 1$ and that if $Y = 1$, then $X = 1$.
+            As a result, there is a $\frac{1}{3}$ probability that $Y = 1 \text{ and } X = 1$.
+
+        \item Analogously, we find that there is a $\frac{1}{3}$ probability that $Y = 2$ and $X = 2$.
+
+        \item For $Y = 3$, $X$ takes on the values $1, 2$ with equal probabilities of $\frac{1}{2}$. Hence,
+            ($Y = 3$ and $X = 1$) and ($Y = 3$ and $X = 2$) are equally likely with a probability 
+            of $\frac{1}{6}$.  
+    \end{enumerate}
+
+    By looking at the described cases, we obtain the outcomes of $X + Y$ and their probabilities:
+    \begin{enumerate}[(i)]
+        \item $\frac{1}{3}$ probability that $X + Y = 2$, for ($X = 1$ and $Y = 1$)
+
+        \item $\frac{1}{3} + \frac{1}{6} = \frac{1}{2}$ probability that $X + Y = 4$, for ($Y = 2$ and $X = 2$)
+    and ($Y = 3$ and  $X = 1$)
+
+    \item $\frac{1}{6}$ probability that $X + Y = 5$, for ($Y = 3$ a and $X = 2$)
+    \end{enumerate}
+
+    Finally, we compute the expectation of the sum and prove the linearity of expectation:
+    \begin{align*}
+        E(X + Y) =& P(X + Y = 2) \cdot 2 + P(X + Y = 4) \cdot 4 + P(X + Y = 5) \cdot 5 \\
+        =& \frac{1}{3} \cdot 2 + \frac{1}{2} \cdot 4 + \frac{1}{6} \cdot 5 = \frac{7}{4} = E(X) + E(Y) 
+    \end{align*}
+\end{proof}
+
+\section*{3.4. Playing "unfair" games}
+\begin{enumerate}[(a)]
+    \item Assume that later on in life, things work out so that you have more than enough money
+        in your retirement savings to take care of your needs and beyond, and that you truly
+        don't have a need for any more money. Someone offers you the chance to play a one-time
+        game where you have a 3/4 chance of doubling your money, and a 1/4 chance of losing 
+        it all. If you initially have $N$ dollars, what is the expectation value of your
+        resulting amount of money if you play the game? Would you want to play it?
+
+    \item Assume that you are stranded somewhere, and that you have only \$10 for a \$20 bus
+        ticket. Someone offers you the chance to play a one-time game where you have a 1/4
+        chance of doubling your money, and a 3/4 change of losing it all. What is the expectation
+        value of your resulting amount of money if you play the game? Would you want to play it?
+\end{enumerate}
+
+\vspace{1em}
+
+\begin{proof}
+    \hfill
+    \begin{enumerate}[(a)]
+        \item Since there is a 3/4 chance of doubling the money and a 1/4 chance of losing it all,
+            the expectation value of the resulting money if playing the game is:
+            \[
+                E(X) = \frac{3}{4} \cdot 2N + \frac{1}{4} \cdot 0 = \frac{3N}{2}
+            \] 
+
+            Even if the expected return looks favorable, I would not play the game in the given context.
+            If I don't have a need for more money, a potential of doubling the money is dwarfed by the 
+            devastating result of losing it all, so the 1/4 probability of losing the money doesn't 
+            make the game appealing enough.
+
+        \item The expected value of the resulting amount of money if playing the second game is given
+            by:
+            \[
+                E(Y) = \frac{3}{4} \cdot \$0 + \frac{1}{4} \cdot \$20 = \$5
+            \] 
+
+            Here, even if the expected return doesn't look favorable, I would play the game. The price
+            is small enough that it would be worth losing the money for a $\frac{1}{4}$ chance of being 
+            able to get the bus ticket and get home.
+    \end{enumerate}
+\end{proof}
+
+\section*{3.5. Simpson's paradox}
+During the baseball season in a particular year, player A has a higher batting average than player B.
+In the following year, A again has a higher average than B. But to your great surprise when you 
+calculate the batting averages over the combined span of the two years, you find that A's average is
+$\emph{lower}$ than B's! Explain, by giving a concrete example, how this is possible.
+
+\vspace{1em}
+
+\begin{proof}
+    The Simpson's paradox is a phenomenon in which a trend appears in several different groups of data
+    but disappears when these groups are combined. Let's consider the same setup as in the description of 
+    the problem. Suppose that the batting averages in the first year are 5/10 for player A and 15/35 for
+    player B, respectively 10/20 for player A and 20/30 for player B in the second year. We can easily
+    see that if we take years individually, the averages of player A are higher than averages of player B. 
+    However, if we combine the data of the two years, we get that the overall batting average 
+    of player A will be lower than the overall average of player B:
+    \[
+        \frac{5 + 10}{10 + 20} = \frac{1}{2} < \frac{7}{13} = \frac{15 + 20}{35 + 30}
+    \] 
+\end{proof}
+
+\section*{3.6. Variance of a product}
+Let $X$ and $Y$ each be the result of independent (and fair) coin flips where we assign the value
+1 to Heads and 0 to Tails. Show that Var($XY$) is not equal to Var($X$)Var($Y$). 
+
+\vspace{1em}
+
+\begin{proof}
+    Since we know that $X$ takes on the values $1, 2$ with equal probability, we easily compute the 
+    variance of $X$: 
+    \[
+        \text{Var}(X) = E[(X - \mu_x)^2] = E\bigg[\bigg(X - \frac{1}{2}\bigg)^2\bigg] 
+        = \frac{1}{2}\bigg(0 - \frac{1}{2}\bigg)^2  + \frac{1}{2}\bigg(1 - \frac{1}{2}\bigg)^2 
+        = \frac{1}{2} + \frac{1}{2}
+        = \frac{1}{4}
+    \] 
+
+    Analogously, we get the same result for Var($X$), so:
+    \[
+        \text{Var}(X)\text{Var}(Y) = \frac{1}{4} \cdot \frac{1}{4} = \frac{1}{16}
+    \] 
+    
+    X and Y can be chosen in 4 ways, 3 give $XY = 0$ and one gives $XY = 1$, so $\mu_{XY} = \frac{1}{4}$.
+    Since all pairings are equally likely, we have that $P(XY = 0) = \frac{3}{4}$ and
+    $P(XY = 1) = \frac{1}{4}$. Now, the variance of the product is given by:
+    \[
+        \text{Var}(XY) = E[(XY - \mu_{XY})^2] = E\bigg[\bigg(XY - \frac{1}{4}\bigg)^2\bigg]
+        = \frac{3}{4} \bigg(0 - \frac{1}{4}\bigg)^2 + \frac{1}{4} \bigg(1 - \frac{1}{4}\bigg)^2
+        = \frac{3}{64} + \frac{9}{64}
+        = \frac{3}{16}
+    \] 
+
+    In conclusion, we proved that in this setup Var($XY$) $\neq$ Var($X$)Var($Y$).
+\end{proof}
+
+\section*{3.7. Variances}
+For each of the three examples near the beginning of Section 3.2., show that the alternative
+$E(X^2) - \mu^2$ form of the variance given in Eq. (3.34) leads to the same results we obtained
+in the examples.
+
+\begin{proof}
+    \hfill
+    \begin{itemize}
+        \item \textbf{Example 1 (Die roll):} The expectation value of the six equally likely outcomes
+            of a dire roll is $\mu = \frac{21}{6}$, therefore $\mu^2 = \frac{441}{36}$. The expected value
+            of $X^2$ is:
+            \[
+                E(X^2) = \frac{1}{6}(1 + 4 + 9 + 16 + 25 + 36) = \frac{91}{6}
+            \] 
+
+            Hence, the variance result is the same as using the standard formula in (3.20): 
+            \[
+                \text{Var}(X) = E(X^2) - \mu_X^2 = \frac{91}{6} - \frac{441}{36} = \frac{105}{36} \approx 2.92
+            \] 
+
+        \item \textbf{Example 2 (Coin flip):} Consider a coin flip where we assign the value 1 to Heads
+            and 0 to Tails. The expectation value of these two equally likely outcomes is $\mu = \frac{1}{2}$,
+            so $\mu^2 = \frac{1}{4}$. The expected value of $X^2$ is:
+            \[
+                E(X^2) = \frac{1}{2} (0 + 1) = \frac{1}{2}
+            \] 
+
+            As a result, the variance is the same as using the standard variance form in (3.21):
+            \[
+                \text{Var}(X) = E(X^2) - \mu^2 = \frac{1}{4}
+            \] 
+
+        \item \textbf{Example 3 (Biased coin):} Consider a biased coins, where the probability of getting
+            Heads is $p$ and the probability of getting Tails is $1 - p \equiv q$. If we again
+            assign the value 1 to Heads and 0 to Tails, then the expectation value is 
+            $\mu = p \cdot 1 + (1 - p) \cdot 0 = p$, so $\mu^2 = p^2$. The expected value
+            of $X^2$ is:
+             \[
+                 E(X^2) = p \cdot 1 + q \cdot 0 = p
+            \] 
+
+            Once again, the variance is the same as in (3.22):
+            \[
+                \text{Var}(X) = E(X^2) - \mu^2 = p - p^2 = p(1 - p) = pq
+            \] 
+    \end{itemize}
+\end{proof}
+
+\section*{3.8. Random walk}
+Consider the following one-dimensional random walk. A person starts at the origin and
+then takes $n$ successive steps. Each step is equally likely to be to the right or to the
+left. All steps have the same length.
+\begin{enumerate}[(a)]
+    \item What is the probability that the person is located back at the 
+        origin after the $n$th step?
+
+    \item After $n$ steps, what is the standard deviation of the person's position
+        relative to the origin? (Assume that the length of each step is, say, one 
+        foot).
+\end{enumerate}
+
+\vspace{1em}
+
+\begin{proof}
+    \hfill
+    \begin{enumerate}[(a)]
+        \item We see from the beginning that a person can end up in the origin only
+            if he made the same number of steps in both directions. Therefore, it's
+            impossible to end up in the origin if $n$ is odd, so: 
+            \[
+                P(O | n = \text{odd}) = 0
+            \] 
+
+            If $n$ is even, we
+            count the favorable cases by considering the sequence of performed steps
+            and seeing in how many ways can the left steps be placed in the sequence,
+            the right steps taking the remaining positions. So, the number
+            of ways in which the person ends up in the origin for an even $n$ is:
+             \[
+                 \binom{n}{\frac{n}{2}} = \frac{n!}{\big(\frac{n}{2}\big)!\big(\frac{n}{2}\big)!}
+            \] 
+
+            The number of possible step sequences is obviously $2^n$, giving us the 
+            probability that is located back at the origin after the $n$th step:
+            \[
+                P(O | n = \text{even}) = \frac{n!}{2^n\big(\frac{n}{2}\big)!\big(\frac{n}{2}\big)!}
+            \] 
+
+            By using the Law of Total Probability:
+            \[
+                P(O) = P(O | n = \text{even})P(n = \text{even}) + P(O | n = \text{odd})P(n = \text{odd}) 
+                = \frac{n!}{2^{n+1}\big(\frac{n}{2}\big)!\big(\frac{n}{2}\big)!}
+            \] 
+
+        \item Let $X$ be the distance from the origin after n steps, where steps are represented
+            by the random variables $X_i$ which take on the values $-1$ and $1$ and 2 equally likely. Then,
+            \[
+                X = \sum_{i = 1}^{n} X_i
+            \] 
+
+            We compute the expectation of $X^2$:
+            \[
+                E[X^2] = E\bigg[\bigg(\sum_{i = 1}^n X_i\bigg)^2\bigg] 
+                = E\bigg[\bigg(\sum_{i = 1}^n {X_i}^2 + \sum_{j = 1}^n\sum_{k = j+1}^n X_jX_k\bigg)\bigg]
+            \] 
+
+            Since $X_i$ takes on -1 and 1, then $X_i^2 = 1$, so $\displaystyle \sum_{i = 1}^n {X_i}^2 = n$.
+            Using this and the linearity of expectation, our expression becomes:
+            \[
+                E[X^2] = E[n] + E\bigg[\sum_{j = 1}^n\sum_{k = j+1}^n X_jX_k\bigg]
+                = n + \sum_{j = 1}^n\sum_{k = j+1}^n E[X_jX_k]
+            \] 
+
+            The events $X_i$ and $X_j$ of choosing a step are independent for $i \neq j$. From
+            this and the fact that the expected value of $X_i$ is 0, we get:
+             \[
+                 E[x^2]= n + \sum_{j = 1}^n\sum_{k = j+1}^n E[X_j]E[X_k] = n
+            \] 
+
+            The mean is now given by:
+            \[
+            \mu = \frac{1}{n}\sum_{i = -n}^n i = 0
+            \] 
+
+            Finally, the standard deviation is:
+            \[
+                \sigma = \sqrt{E(X^2) - \mu^2} = \sqrt{n}
+            \] 
+    \end{enumerate}
+\end{proof}
+
+\section*{3.9. Expected product, without replacement}
+Consider a set of $N$ given numbers, $a_1, a_2, \ldots a_N$. Let the mean of these $N$ numbers
+be $\mu$, and let the standard deviation be $\sigma$. Draw two numbers $X_1$ and $X_2$ 
+randomly $\emph{without replacement}$. Show that the expectation value of their
+product is 
+\begin{equation*}\tag{3.90}
+    E[X_1X_2] = \mu^2 - \frac{\sigma^2}{N - 1}
+\end{equation*}
+
+$\emph{Hint}$: All of the $a_ia_j$ possibilities (with $i \neq j$) are equally likely.
+
+\vspace{1em}
+
+\begin{proof}
+    There are $\binom{N}{2} = \frac{N(N - 1)}{2}$ ways of choosing $X_1$ and $X_2$, all of
+    them being equally likely, so:
+    \[
+        E[X_1X_2] = \frac{2}{N(N - 1)} \sum_{i = 1}^n \sum_{j = i + 1}^n a_ia_j
+    \] 
+
+    Seeing that
+    \[
+        \bigg(\sum_{i = 1}^n a_i\bigg)^2 = \sum_{i = 1}^n {a_i}^2 + 2\sum_{i = 1}^n \sum_{j = i + 1}^n a_ia_j
+    \] 
+
+    , the expression of the expectation becomes:
+    \[
+        E[X_1X_2] = \frac{1}{N(N - 1)} \bigg[\bigg(\sum_{i = 1}^n a_i\bigg)^2 - \sum_{i = 1}^n {a_i}^2\bigg]
+    \] 
+    
+    From the formula of the mean we notice that
+    \begin{equation*}\tag{3.9.1}
+        N\mu = \sum_{i = 1}^n a_i
+    \end{equation*}
+
+    , so then
+    \begin{align*}
+        E[X_1X_2] = \frac{1}{N(N - 1)} \bigg(N^2\mu^2 - \sum_{i = 1}^n {a_i}^2\bigg) 
+        =& \frac{N\mu^2}{N - 1} - \frac{1}{N(N - 1)}\sum_{i = 1}^n {a_i}^2 \\
+        =& \mu^2 - \frac{1}{N(N - 1)}\bigg(\sum_{i = 1}^n {a_i}^2 - N\mu^2\bigg) \\
+    \end{align*}
+
+    By rewriting the expression of the variance and using (3.9.1), we obtain:
+    \begin{align*}
+        \frac{\sigma^2}{N - 1} = \frac{1}{N(N - 1)}\sum_{i = 1}^n (a_i - \mu)^2
+        =& \frac{1}{N(N - 1)} \bigg(\sum_{i = 1}^n {a_i}^2 - 2\mu \sum_{i = 1}^n a_i + N\mu^2\bigg) \\
+        =& \frac{1}{N(N - 1)} \bigg(\sum_{i = 1}^n {a_i}^2 - 2N\mu^2 + N\mu^2\bigg) \\
+        =& \frac{1}{N(N - 1)} \bigg(\sum_{i = 1}^n {a_i}^2 - N\mu^2\bigg) \\
+    \end{align*}
+
+    In conclusion, by substituting the last expression in the expectation's form, we see
+    that
+    \begin{equation*}\tag{3.90}
+        E[X_1X_2] = \mu^2 - \frac{\sigma^2}{N - 1}
+    \end{equation*}
+\end{proof}
+
+\section*{3.10. Standard deviation of the mean, without replacement}
+Consider a set of $N$ given numbers, $a_1, a_2, \ldots, a_N$. Let the mean of these
+$N$ numbers be $\mu$ and let the standard deviation be $\sigma$. Draw a sample
+of $n$ numbers $X_i$, randomly $\emph{without replacement}$, and calculate 
+their sample mean. Show that the variance of the sample mean is given by
+\begin{equation*}\tag{3.91}
+    E\bigg[\bigg(\frac{1}{n}\sum_{i = 1}^n X_i - \mu\bigg)^2\bigg] 
+    = \frac{\sigma^2}{n}\bigg(1 - \frac{n-1}{N-1}\bigg)
+\end{equation*}
+
+\vspace{1em}
+
+\begin{proof}
+    We start by expanding the square in the expression:
+
+    \begin{align*}
+        E\bigg[\bigg(\frac{1}{n}\sum_{i = 1}^n X_i - \mu\bigg)^2\bigg]
+        =& E\bigg[\frac{1}{n^2}\bigg(\sum_{i = 1}^n X_i\bigg)^2 
+                              - \frac{2\mu}{n}\sum_{i = 1}^n X_i + \mu^2\bigg] \\
+        =& E\bigg[\frac{1}{n^2}\sum_{i = 1}^{n} {X_i}^2 + \frac{2}{n^2}\sum_{i = 1}^n\sum_{j = i + 1}^n X_iX_j
+                              - \frac{2\mu}{n}\sum_{i = 1}^n X_i + \mu^2\bigg] \\
+    \end{align*}
+
+    By using the linearity of expectation, the expression becomes:
+    \[
+        E\bigg[\bigg(\frac{1}{n}\sum_{i = 1}^n X_i - \mu\bigg)^2\bigg] =
+        \frac{1}{n^2}\sum_{i = 1}^nE[{X_i}^2] + \frac{2}{n^2}\sum_{i = 1}^n\sum_{j = i + 1}^n E[X_iX_j]
+        - \frac{2\mu}{n} \sum_{i = 1}^n E[X_i] + \mu^2
+    \] 
+
+    We assume that the $n$ numbers $X_i$ are equally likely to be extracted, so
+    we denote $X$ such that for all $1 \leq i \leq n$,
+    \begin{align*}
+        E[X_i] &= E[X] = \mu \\
+        E[{X_i}^2] &= E[X^2] = \mu^2 + \sigma^2
+    \end{align*}
+    $X_iX_j$ are also distributed the same. Using (3.90), we denote $X_aX_b$ so that 
+    for all $1 \leq i \leq j \leq n$,
+    \[
+        E[X_iX_j] = E[X_aX_b] = \mu^2 - \frac{\sigma^2}{N - 1}
+    \] 
+
+    By using the proposed substitutions, our expression becomes:
+    \begin{align*}
+        E\bigg[\bigg(\frac{1}{n}\sum_{i = 1}^n X_i - \mu\bigg)^2\bigg]
+        =& \frac{1}{n^2}\sum_{i = 1}^nE[{X}^2] + \frac{2}{n^2}\sum_{i = 1}^n\sum_{j = i + 1}^n E[X_aX_b]
+            - \frac{2\mu}{n} \sum_{i = 1}^n E[X] + \mu^2 \\
+        =& \frac{1}{n}\bigg[\mu^2 + \sigma^2 + (n - 1) 
+            \bigg(\mu^2 - \frac{\sigma^2}{N - 1}\bigg)\bigg] - \mu^2 \\
+        =& \mu^2 \bigg(\frac{1}{n} + \frac{n-1}{n} - 1\bigg) + 
+            \sigma^2\bigg(\frac{1}{n} - \frac{n-1}{n(N - 1)}\bigg) 
+    \end{align*}
+
+    The coefficient of $\mu^2$ is 0, so we obtain the desired result:
+    \begin{equation*}\tag{3.91}
+        E\bigg[\bigg(\frac{1}{n}\sum_{i = 1}^n X_i - \mu\bigg)^2\bigg] 
+        = \frac{\sigma^2}{n}\bigg(1 - \frac{n-1}{N-1}\bigg)
+    \end{equation*}
+\end{proof}
+
+
+\section*{3.11. Biased sample standard deviation}
+We mentioned on page 163 that the sample standard deviation $s$ is a $\emph{biased}$
+estimator of the distribution standard deviation $\sigma$. The basic reason for this
+is that  the square root operation is nonlinear, which means that the square
+root of the average of a set of numbers isn't equal to the average of their
+square roots. For example, the average of 1.1 and 0.9 is 1, but the average of 
+$\sqrt{1.1}$ and  $\sqrt{0.9}$ isn't 1. It is smaller than 1. Let's give a general
+proof that  $E[s] \leq \sigma$ (unlike  $E[s^2] = \sigma$).
+
+If we calculate the sample variances for a large number $N$ of sets of $n$ numbers,
+then the $E[s^2] = \sigma^2$ equality in Eq. (3.74) tells us that in the $N \to \infty$ 
+limit, we have
+\begin{equation*}\tag{3.92}
+    \frac{s_1^2 + s_2^2 + \ldots + s_N^2}{N} = \sigma^2
+\end{equation*}
+
+Our goal is to show that
+\begin{equation*}\tag{3.93}
+    \frac{s_1 + s_2 + \ldots + s_N}{N} \leq \sigma
+\end{equation*}
+in the $N \to \infty$ limit. To demonstrate this, square both sides of Eq. (3.93)
+and make copious use of the arithmetic-geometric-mean inequality, $\sqrt{ab} \leq (a+b)/2$.
+
+\vspace{1em}
+
+\begin{proof}
+    Let us define the series $(a_N)_{N \geq 1}, (b_N)_{N \geq 1} \subset \mathbb{N}$, with
+
+    \vspace{1em}
+    \begin{minipage}{0.5\textwidth}
+        \[
+            a_N = \frac{s_1 + s_2 + \ldots + s_N}{N}
+        \]
+    \end{minipage}
+    \begin{minipage}{0.5\textwidth}
+        \[
+            b_N = \sqrt{\frac{s_1^2 + s_2^2 + \ldots + s_N^2}{N}} 
+        \] 
+    \end{minipage}
+    \vspace{1em}
+
+    We'll prove that $a_N \leq b_N$, for all $N \in \mathbb{N}$. The starting point is 
+    the inequality
+    \[
+        \sum_{i = 1}^N \sum_{j = i + 1}^N (s_i - s_j)^2 \geq 0
+    \] 
+    which is true, since a sum of squares is always nonnegative. By expanding
+    the sum, we get that
+    \[
+        (N - 1)\sum_{i = 1}^{N}s_i^2 - \sum_{i = 1}^N \sum_{j = i + 1}^N 2s_is_j \geq 0
+    \] 
+    After moving the second term in the right-hand side of the inequality and then
+    adding $\displaystyle \sum_{i = 1}^{N} s_i^2$ to both sides, the expression becomes:
+    \[
+        N\sum_{i = 1}^N s_i^2 \geq \sum_{i = 1}^N s_i^2 + \sum_{i = 1}^N \sum_{j = i + 1}^N 2s_is_j
+    \] 
+
+    The member on the right is the expansion of the squared sum of $s_i$'s, so
+    \[
+        N\sum_{i = 1}^N s_i^2 \geq \bigg(\sum_{i = 1}^{N} s_i\bigg)^2
+    \] 
+
+    We divide both sides by $N^2 > 0$ and. Then,
+    \[
+        \frac{1}{N}\sum_{i = 1}^N s_i^2 \geq \bigg(\frac{1}{N}\sum_{i = 1}^{N} s_i\bigg)^2
+    \] 
+
+    The next step is applying the squared root operation on both sides of the expression.
+    Since the squared root function is increasing, the inequality is preserved:
+    \[
+        \bigg(\frac{1}{N}\sum_{i = 1}^N s_i^2\bigg)^{\frac{1}{2}} \geq \frac{1}{N}\sum_{i = 1}^{N} s_i
+    \] 
+
+    We expand the sum and see that we find $a_N$ and $b_N$ :
+    \[
+        \sqrt{\frac{s_1^2 + s_2^2 + \ldots s_N^2}{N}} = b_N \geq a_N = \frac{s_1 + s_2 + \ldots + s_N}{N}
+    \] 
+
+    Therefore, we proved that $a_N \leq b_N$, for all $N \in \mathbb{N}$.
+
+    \vspace{1em}
+
+    Now, we know that:
+    \[
+        a_N \leq b_N, \forall N \in \mathbb{N} \implies \lim_{N \to \infty} a_N \leq \lim_{N \to \infty} b_N
+    \] 
+
+    By substituting the actual values of $a_N$ and $b_N$, we get:
+    \[
+        \lim_{N \to \infty} \frac{s_1 + s_2 + \ldots + s_N}{N}
+        \leq \lim_{N \to \infty} \sqrt{\frac{s_1^2 + s_2^2 + \ldots + s_N^2}{N}} 
+    \] 
+
+    By using the continuity of the square root and then substituting with (3.92) in the
+    right-hand side member, we obtain the desired result:
+    \begin{equation*}\tag{3.93}
+        \lim_{N \to \infty} \frac{s_1 + s_2 + \ldots + s_N}{N} \leq \sigma
+    \end{equation*}
+\end{proof}
+
+\section*{3.13. Sample variance for two dice rolls}
+\begin{enumerate}[(a)]
+    \item We know from the first example in Section 3.2 that the variance of a
+        single die roll is $\sigma^2 = 2.92$. If you use Eq. (3.73) to
+        calculate the sample variance  $s^2$ for $n = 2$ dice rolls,
+        the expected value of $s^2$ should be $\sigma^2 = 2.92$,
+        according to Eq. (3.74). By considering the 36 equally
+        likely pairs of dice in Table 1.5, verify that this is indeed the case.
+
+    \item Using the information you generated from Table 1.5, calculate Var($s^2$).
+        Then show that the result agrees with the expression of Var($s^2$) in
+        Eq. (3.94), with $n = 2$.
+\end{enumerate}
+
+
+
+\vspace{1em}
+
+\begin{proof}
+    \hfill
+
+    \begin{enumerate}[(a)]
+        \item By using (3.74) for $n = 2$, our sample variance is:
+             \[
+                 s^2 = \frac{1}{n - 1}\sum_{i = 1}^n (x_i - \overline{x})^2
+                 = (x_1 - \overline{x})^2 + (x_2 - \overline{x})^2
+            \] 
+
+        Using the fact that $\overline{x} = \frac{1}{2}(x_1 + x_2)$, we
+        can easily prove that 
+        \[
+            s^2 = \frac{(x_1 - x_2)^2}{2}
+        \] 
+
+        Now, we analyze each one of the 36 possible dice roll pairs and analyze their sample variances.
+        We have 6 cases: 
+        \begin{enumerate}[(1)]
+            \item $x_1$ and $x_2$ are equal. There are 6 such cases, with $s^2 = 0$.
+
+            \item The difference between $x_1$ and $x_2$ is 1. There are $5 \cdot 2 = 10$ 
+                such roll pairs, with $s^2 = \frac{1}{2}$
+
+            \item The difference between $x_1$ and $x_2$ is 2. There are $4 \cdot 2 = 8$ 
+                such roll pairs, with $s^2 = 2$
+
+            \item The difference between $x_1$ and $x_2$ is 3. There are $3 \cdot 2 = 6$ 
+                such roll pairs, with $s^2 = \frac{9}{2}$.
+
+            \item The difference between $x_1$ and $x_2$ is 4. There are $2 \cdot 2 = 4$ 
+                such roll pairs, with $s^2 = 8$.
+
+            \item The difference between $x_1$ and $x_2$ is 5. There are $1 \cdot 2 = 2$ 
+                such roll pairs, with $s^2 = \frac{25}{2}$.
+        \end{enumerate}
+
+        Therefore, the expected value of the sample variance $s^2$ for $n = 2$ is:
+        \[
+            E[s^2] = \bigg(\frac{6}{36} \cdot 0\bigg) + \bigg(\frac{10}{36} \cdot \frac{1}{2}\bigg)
+                  + \bigg(\frac{8}{36} \cdot 2\bigg) + \bigg(\frac{6}{36} \cdot \frac{9}{2}\bigg) 
+                  + \bigg(\frac{4}{36} \cdot 8\bigg) + \bigg(\frac{2}{36} \cdot \frac{25}{2}\bigg) 
+                  = \frac{88}{36} \approx 2.92
+        \]
+        which matches the expected result.
+
+    \vspace{1em}
+
+    \item The variance of the sample variance is given by:
+        \begin{align*}
+            \text{Var}(s^2) = E[(s^2 - 2.92)^2]
+               &= \bigg[\frac{6}{36} \cdot (0 - 2.92)^2\bigg] 
+                + \bigg[\frac{10}{36} \cdot (0.5 - 2.92)^2\bigg]
+                + \bigg[\frac{8}{36} \cdot (2 - 2.92)^2\bigg] \\ 
+               &+ \bigg[\frac{6}{36} \cdot (4.5 - 2.92)^2\bigg]
+                + \bigg[\frac{4}{36} \cdot (8 - 2.92)^2\bigg]
+                + \bigg[\frac{2}{36} \cdot (12.5 - 2.92)^2\bigg] \\
+               &\approx 11.62
+        \end{align*}
+
+        The fourth-order mean $\mu_4$ is
+        \begin{align*}
+            \mu_4 = E[(X - \mu)^4] 
+            &= \frac{1}{6}\big[(1 - 3.5)^4 + (2 - 3.5)^4 + (3 - 3.5)^4 
+                + (4 - 3.5)^4 + (5 - 3.5)^4 + (6 - 3.5)^4] \\
+            &\approx 14.73
+        \end{align*}
+
+        Eq. (3.94) is given by
+        \begin{equation*}\tag{3.94}
+            \text{Var}(s^2) = \frac{1}{n}\bigg[\mu_4 - \sigma^2\bigg(\frac{n-3}{n-1}\bigg)\bigg]
+        \end{equation*}
+        so by plugging the numbers, we see that: 
+        \[
+            \text{Var}(s^2) = \frac{1}{2}(14.73 + {2.92}^2) = 11.62
+        \] 
+        which matches the expected result.
+    \end{enumerate}
+\end{proof}
+
+\end{document}

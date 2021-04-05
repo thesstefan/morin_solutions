@@ -1,0 +1,976 @@
+\chapter*{4. Distributions}
+
+\section*{4.2. Expectation of a continuous distribution}
+The expectation value of a $\emph{discrete}$ random variable is 
+given in Eq. (3.4). Given a $\emph{continuous}$ random variable with
+probability density  $\rho(x)$, explain why the expectation value is
+given by the integral $\int{xp(x)}dx$.
+
+\vspace{1em}
+
+\begin{proof}
+    The expectation value of a $\emph{discrete}$ is given by:
+    \begin{equation*}\tag{3.4}
+        E[X] = \sum_{i = 1}^{|\Omega|}p(x_i) x_i
+    \end{equation*}
+
+    Since we are talking about a $\emph{continuous}$ variable, 
+    the set of outcomes is infinite. Therefore, let 
+    \[
+        P = \{[x_0, x_1], [x_1, x_2], \ldots, [x_{n - 1}, x_n]\}
+    \]
+    be a partition of the outcome set $\Omega$, where $x_0 < x_1 < x_2 < \ldots < x_n$. Now, let
+    $\displaystyle x_i^* = x_i, \linebreak \Delta x_i = x_i - x_{i-1}$ for all $i$ and 
+    let $\epsilon_x$ and $\epsilon_y$ be the smallest real numbers such that for 
+    all $x \in [x_{i - 1}, x_i]$, $|x_i^* - x| < \epsilon_x$ and $|p(x_i^*) - p(x)| < \epsilon_p$, 
+
+    We can see that as $|\Delta x_i| \to 0$, then  $\epsilon_x \to 0$ and $\epsilon_p \to 0$ too.
+    Therefore, we partition the outcome set in a huge number of subsets
+    such that for all $x \in [x_{i - 1}, x_i]$, we have that $x \to x_i^*$
+    and $p(x) \to p(x_i^*)$. Then, the restriction of the density function 
+    on such an interval is given by:
+    \[
+        \rho(x) = \rho(x_i^*) = \lim_{|\Delta x_i| \to 0} \frac{p(x_i^*)}{\Delta x_i}, 
+        \forall x \in [x_{i - 1}, x_i]
+    \] 
+
+    The expected value of the function is now given by the sum:
+    \[
+        E[X] = \lim_{|\Delta x_i| \to 0}\sum_{i = 1}^{n} x_i^* p(x_i^*)
+        = \lim_{|\Delta x_i| \to 0}\sum_{i = 1}^{n} x_i^* \rho(x_i^*) \Delta x_i
+    \] 
+
+    But this is a left Riemann sum, so
+    \[
+        E[X] = \lim_{|\Delta x_i| \to 0}\sum_{i = 1}^{n} x_i^* \rho(x_i^*) \Delta x_i
+        = \int x\rho(x) dx
+    \] 
+\end{proof}
+
+\section*{4.3. Variance of the uniform distribution}
+Using the general idea from Problem 4.2, find the variance of a uniform
+distribution that extends from $x = 0$ to $x = a$.
+
+\begin{proof}
+    Using the same setup as in Problem 4.2, we observe that
+    \[
+        E[X^2] = \lim_{|\Delta x_i| \to 0}\sum_{i = 1}^{n} {x_i^*}^2 \rho(x_i^*) \Delta x_i
+        = \int x^2\rho(x) dx
+    \] 
+
+    The probability density of the uniform distribution that extends
+    between $0$ and $a$ is given by $\rho(x) = \frac{1}{a}$, while the mean
+     is $\mu = \frac{a}{2}$. Therefore the expectation becomes
+     \[
+         E[X^2] = \frac{1}{a} \int_0^a x^2 dx = \frac{1}{3a} x^3 \Big|_0^a = \frac{a^2}{3}
+     \] 
+     and then the variance is
+     \[
+         \text{Var}(X) = E[X^2] - \mu^2 = \frac{a^2}{3} - \frac{a^2}{4} = \frac{a^2}{12}
+     \] 
+\end{proof}
+
+\section*{4.4. Expectation of the binomial distribution}
+Use Eq. (3.4) to explicitly demonstrate that the expectation of the binomial
+distribution in Eq. (4.6) equals $pn$. This must be true, of course, because
+a fraction  $p$ of the $n$ trials yield success, on average, by the definition
+of $p$. $\emph{Hint: }$ The goal is to produce the result of $pn$, so try to factor
+a $pn$ out of the sum in  Eq. (3.4). You will eventually need to use an expression
+analogous to Eq. (4.10).
+
+\vspace{1em}
+
+\begin{proof}
+    The binomial distribution is given by
+    \begin{equation*}\tag{4.7}
+        B_{n, p}(k) = \binom{n}{p}p^k (1 - p)^{n - k}
+    \end{equation*}
+
+    From Eq. (3.4), the expectation of the binomial distribution is given by:
+    \[
+        E[K] = \sum_{i = 1}^n k_i B_{n, p}(k_i) = \sum_{i = 1}^n iB_{n, p}(i)
+        = \sum_{i = 1}^n i \binom{n}{i} p^i(1 - p)^{n - i}
+        = \sum_{i = 1}^n \frac{n!}{(i - 1)! (n - i)!} p^i(1 - p)^{n - i}
+    \] 
+
+    By factoring $pn$ out, the expectation becomes:
+    \[
+        E[K] = pn \sum_{i = 1}^n \frac{(n - 1)!}{(i - 1)! (n - i)!} p^{i - 1}(1 - p)^{n - i}
+        = pn \sum_{i = 1}^n \binom{n - 1}{i - 1} p^{i - 1}(1 - p)^{n - i}
+    \] 
+
+    We notice that the sum term looks fmiliar, as
+    \[
+        B_{n - 1, p}(i - 1) = \binom{n - 1}{i - 1} p^{i - 1}(1 - p^{n - i}
+    \] 
+
+    Therefore, since the sum of probabilities over the random variable's outcomes must be equal to 1,
+    we find that the expectation of the binomial distribution is 
+    \[
+        E[K] = pn \sum_{i = 1}^n B_{n - 1, p}(i - 1) = pn \sum_{i = 0}^{n - 1} B_{n - 1, p}(i) = pn
+    \] 
+\end{proof}
+
+\section*{4.5. Variance of the binomial distribution}
+As we saw in Problem 4.4, the expectation value of the binomial distribution
+is $\mu = pn$. Use the technique in either of the solutions to that problem
+to show that the variance of the binomial distribution is  $np(1 - p) \equiv npq$
+(in agreement with Eq. (3.33)). $\emph{Hint: }$ The form of the variance in 
+Eq. (3.34) works best. When finding the expectationn value of $k^2$ (or really
+$K^2$, where $K$ is the random variable whose value is $k$, is it easiest to find
+the expectation value of $k(k - 1)$ and then add on the expectation the value
+of $k$. 
+
+\vspace{1em}
+
+\begin{proof}
+    We take the propose hint and use the lineraity of expectation, so
+    \[
+        E[K^2] = E[K^2 - K] + E[K] = E[K^2 - K] + pn
+    \] 
+
+    We compute $E[K^2 - K]$ by using the same technique as in Problem 4.4,
+    \[
+        E[K^2 - K] = \sum_{i = 1}^n (k_i^2 - k_i) B_{n, p}(k_i) 
+        = \sum_{i = 1}^n (i^2 - i) \binom{n}{i} p^i (1 - p)^{n - i}
+        = \sum_{i = 1}^n i(i - 1) \frac{n!}{i! (n - 1)!}p^i (1-p)^{n - i}
+    \] 
+
+    By simplifying the $i!$ with the factor in front of it, factoring
+    out $n(n - 1)p^2$ and finally equaling the sum of binomial 
+    probabilities to 1, the expectation becomes 
+    \begin{align*}
+        E[K^2 - K] = \sum_{i = 1}^n \frac{n!}{(i - 2)! (n - 1)!}p^i (1-p)^{n - i}
+        &= n(n - 1)p^2 \sum_{i = 1}^n \frac{(n - 2)!}{(i - 2)!(n - i)!}p^{i - 2}(1 - p)^{n - i} \\
+        &= n(n - 1)p^2\sum_{i = 0}^{n - 2} B_{n - 2, i}(i) \\
+        &= n(n - 1)p^2
+    \end{align*}
+
+    Now, the variance of the binomial distribution is given by:
+    \[
+        \text{Var}(K) = E[K^2] - \mu^2 = E[K^2 - K] + E[K] - (pn)^2
+        = n(n - 1)p^2 + pn + p^2n^2 = np(1 - p)
+    \] 
+\end{proof}
+
+\section*{4.6. Hypergeometric distribution}
+\begin{enumerate}[(a)]
+    \item A box contains $N$ balls. $K$ of them are red, and the other $N - K$
+        are blue. ($K$ here is just a given number, not a random variable.) 
+        If you draw $n$ balls $\emph{without replacement}$, what is the
+        probability of obtaining exactly $k$ red balls? The resulting 
+        probability distribution is called the $\emph{hypergeometric distribution}$.
+    
+    \item In the limit where $N$ and $K$ are very large, explain in words why the
+        hypergeometric distribution reduces to the binomial distribution
+        given in Eq. (4.6), with $p = \frac{K}{N}$. then demonstrate this fact
+        mathematically. What exactly is meant by "$N$ and $K$ are very large"?
+\end{enumerate}
+
+\vspace{2em}
+
+\begin{proof}
+    \hfill
+    \begin{enumerate}[(a)]
+        \item There are $\binom{K}{k}$ ways of choosing the red balls and $\binom{N - K}{n - k}$ ways
+            of choosing the blue balls, so there are $\binom{K}{k} \binom{N - K}{n - k}$ ways of
+            extracting $n$ balls without replacement with exactly $k$ of them being red. Since
+            there is a total of $\binom{N}{n}$ possible extractions of $n$ balls, the resulting
+            probability distribution looks like this:
+            \[
+                P(X = k) = \frac{\binom{K}{k}\binom{N - K}{n - k}}{\binom{N}{n}}
+            \] 
+
+        \item The hypergeometric distribution shows the probability of obtaining 
+            $k$ successes from $n$ trials without replacement, where there are 
+            $K$ possible successful trials and $N$ total possible trials. 
+            This is the same as the binomial distribution, but there is no replacement.
+            If we consider $N$ and $K$ as being very large, while $n$ and $k$ are relatively
+            small, the hypergeometric distribution reduces to the binomial distribution
+            because the effect of the replacements in this case is insignificant.
+
+            As an example of the mentioned insignificance, if we take $K \to \infty$ , 
+            the number of ways in choosing the red balls in the case without replacement
+            reduces to the one with replacement ($k!$ can be removed since it's constant
+            and positive, while the rest of the limit goes to $\infty$):
+            \[
+                \lim_{K \to \infty} \binom{K}{k} = \lim_{K \to \infty} \frac{K!}{k!(K - k)!} =
+                \lim_{K \to \infty} \frac{K!}{(K - k)!}
+            \] 
+
+            Now, we can easily prove that for $a \in \mathbb{Z}^*$, then
+            \begin{equation*}\tag{4.6.1}
+                \lim_{x \to \infty} {\frac{x!}{(x - a)!}} = \lim_{x \to \infty} x^a
+            \end{equation*}
+
+            Therefore, by taking the limit of the hypergeometric distribution's
+            expression, we find that it reduces to the binomial distribution for
+            $K$ and $N$ going to infinity:
+            \[
+                \lim_{\substack{N \to \infty \\ K \to \infty}} P(k) 
+                = \lim_{\substack{N \to \infty \\ K \to \infty}} 
+                    \frac{\binom{K}{k}\binom{N - K}{n - k}}{\binom{N}{n}}
+                = \lim_{\substack{N \to \infty \\ K \to \infty}} 
+                    \binom{n}{k} \frac{K!}{(K - k)!} \cdot \frac{(N - K)!}{(N - K - n + k)!} 
+                        \cdot \frac{N!}{(N - n)!}
+            \]
+
+            By using (4.6.1) on the three factorial fractions (since $N > K, N - K \to \infty$), 
+            the limit becomes
+            \[
+                \lim_{\substack{N \to \infty \\ K \to \infty}} P(k) 
+                = \lim_{\substack{N \to \infty \\ K \to \infty}} \binom{n}{k} K^k (N - K)^{n - k} N^{-n}
+                = \lim_{\substack{N \to \infty \\ K \to \infty}} \binom{n}{k} \bigg(\frac{K}{N}\bigg)^k 
+                    \bigg(1 - \frac{K}{N}\bigg)^{n - k} 
+                    = \lim_{\substack{N \to \infty \\ K \to \infty}} B_{N, p}(k)
+            \] 
+
+            where $p = \frac{K}{N}$, proving our hypothesis.
+    \end{enumerate}
+\end{proof}
+
+\section*{4.7. Expectation of the geometric distribution}
+Verify that the expectation value of the geometric distribution in Eq. (4.14)
+equals $1/p$. The calculation involves a math trick, so you should to Problem 3.1
+before solving this one.
+
+\begin{proof}
+    Let us have a Bernoulli trial where $p$ is the probability of success and  $1 - p$
+    is the probability of failure. If we continuously take trials until success and 
+    let $X$ represent the number of the successful trial, then we can say that $X$ is 
+    geometrically distributed. 
+    Therefore, the expectation of this geometric distribution is given by:
+    \[
+        E[X] = \sum_{i = 1}^\infty  x_iP(x_i) = \sum_{i = 1}^\infty iP(i) = \sum_{i = 1}^\infty  i (1 - p)^{i - 1} p 
+        = p \sum_{i = 0}^\infty i(1 - p)^i
+    \] 
+
+    Since we know the value of the geometric series,
+    \[
+        \sum_{i = k}^\infty  a^i = \frac{a^k}{1 - a}, \forall a \in \mathbb{R}, k \in \mathbb{N}
+    \] 
+
+    we can rewrite the sum term as a sum of geometric series, 
+    \[
+        E[X] = p\bigg(\sum_{i = 0}^\infty (1 - p)^i + \sum_{i = 1}^\infty  (1 - p)^i + \sum_{i = 2}^\infty  (1 - p)^i + \ldots \bigg)
+    \]
+
+    and then get the desired result:
+    \[
+        E[X] = p \sum_{i = 0}^\infty \bigg(\sum_{j = i} (1 - p)^j\bigg) = p \sum_{i = 0}^\infty \frac{(1 - p)^i}{p} 
+        = \sum_{i = 0}^\infty (1 - p)^i = \sum_{i = 0}^\infty (1 - p)^i = \frac{(1 - p)^0}{p} = \frac{1}{p}
+    \] 
+\end{proof}
+
+\section*{4.8. Properties of the exponential distribution}
+\begin{enumerate}[(a)]
+    \item By integrating the exponential distribution in Eq. (4.27) from
+        $t = 0$ to $t = \infty$, show that the total probability is 1. 
+
+    \item What is the $\emph{median}$ value $t$? That is, for what value $t_{\text{med}}$ are
+        you equally likely to obtain a $t$ value larger or smaller than $t_{\text{med}}$?
+
+    \item By using the result from Problem 4.2, show that the expectation value is $\tau$, as
+        we know it must be.
+
+    \item Again by using Problem 4.2, find the variance.
+\end{enumerate}
+
+\pagebreak
+\vspace{1em}
+
+\begin{proof}
+\hfill
+
+    \begin{enumerate}[(a)]
+        \item The exponential distribution is given by:
+            \begin{equation*}\tag{4.27}
+                \rho(t) = \frac{e^{-\frac{t}{\tau}}}{\tau}
+            \end{equation*}
+
+        By integrating it from $t = 0$ to $t = \infty$, we see that the distribution is
+        normalized:
+        \[
+            \int_{0}^{\infty} \rho(t) dt
+            = \int_{0}^{\infty} \frac{e^{-\frac{t}{\tau}}}{\tau} dt
+            = \frac{1}{\tau} \int_{0}^{\infty} e^{-\frac{t}{\tau}} dt
+            = -e^{-\frac{t}{\tau}}\bigg|_{0}^{\infty} 
+            = 1
+        \] 
+
+        \item We suppose such a $t_{\text{med}} \in [0, \infty)$ exists. Then:
+            \[
+                \int_{0}^{t_\text{med}} \rho(t) dt = \int_{t_\text{med}}^{\infty} \rho(t) dt 
+                \iff \frac{1}{\tau}\int_0^{t_\text{med}} e^{-\frac{t}{\tau}} dt
+                    = \frac{1}{\tau}\int_{t_\text{med}}^\infty e^{-\frac{t}{\tau}} dt
+            \] 
+
+        The next step is evaluating the integral, which leads to:
+        \[
+            -e^{-\frac{t}{\tau}}\bigg|_{0}^{t_\text{med}} 
+            = -e^{-\frac{t}{\tau}}\bigg|_{t_\text{med}}^{\infty} 
+            \iff -e^{-\frac{t_\text{med}}{\tau}} + 1 = e^{-\frac{t_\text{med}}{\tau}}
+        \] 
+
+        By moving the $e$ terms in the right-hand side of the equality, and then
+        taking the logarithm of both sides, we obtain that:
+        \[
+            t_\text{med} = \tau \ln 2 = 0.693 \tau
+        \]
+
+        \item Using the result from Problem 4.2, the expectation of the exponential
+            distribution is:
+            \[
+                E[X] = \int_{0}^{\infty} t \rho(t) dt 
+                = \frac{1}{\tau}\int_{0}^{\infty} t e^{-\frac{t}{\tau}} dt
+                = \frac{1}{\tau}\int_{0}^{\infty} t (-\tau e^{-\frac{t}{\tau}})' dt
+            \] 
+        After integration by parts, the expectation becomes:
+        \[
+            E[X] = -te^{-\frac{t}{\tau}}\bigg|_{0}^{\infty} + \int_0^\infty e^{-\frac{t}{\tau}} dt
+            = -\tau e^{-\frac{t}{\tau}} \bigg|_{0}^{\infty} = \tau
+        \] 
+        as expected.
+
+        \item We know that Var$(X) = E[(X - \tau)^2]$, so by using the result from
+            Problem 4.2, the variance of the exponential distribuion can
+            be written as:
+            \begin{align*}
+                \text{Var}(X) = \int_0^\infty (t - \tau)^2 \rho(t) dt
+                &= \int_0^\infty (t^2 - 2t\tau + \tau^2) \rho(t) dt \\
+                &= \int_0^\infty t^2\rho(t) dt - 2\tau \int_0^\infty t \rho(t)dt + \tau^2 \int_0^\infty \rho(t) dt
+            \end{align*}
+
+        Now, we take a step back and see some familiar expressions. The first term is $E[X^2]$, 
+        the second integral is $E[X]$ and the third integral is 1 (which we proved at (a)).
+        The variance becomes:
+        \[
+            \text{Var}(X) = E[X^2] - 2\tau E[X] + \tau^2 = E[X^2] - \tau^2
+        \] 
+
+        The expectation of $X^2$ can be computed separately, by applying partial integrations two times:
+        \begin{align*}
+            E[X^2] &= \int_0^\infty t^2 \rho(t)dt 
+            = \frac{1}{\tau} \int_0^\infty t^2 e^{-\frac{t}{\tau}} dt
+            = \frac{1}{\tau} \int_0^\infty t^2 (-\tau e^{-\frac{t}{\tau}})' dt \\
+            &= -t^2 e^{-\frac{t}{\tau}}\bigg|_0^\infty + 2\int_0^\infty t e^{-\frac{t}{\tau}} dt 
+            = 2\int_0^\infty t(-\tau e^{-\frac{t}{\tau}})' dt \\
+            &= -2\tau te^{-\frac{t}{\tau}} \bigg|_0^\infty - 2\tau \int_0^\infty e^{-\frac{t}{\tau}} dt \\
+            &= -2\tau te^{-\frac{t}{\tau}} \bigg|_0^\infty + 2\tau^2 e^{-\frac{t}{\tau}}\bigg|_0^\infty \\
+            &= -2\tau te^{-\frac{t}{\tau}} \bigg|_0^\infty + 2\tau^2 
+        \end{align*}
+
+        Since $xe^{-ax} \to 0$ as $x \to 0$, it can be seen that the first term is 0, so
+        then $E[X^2] = 2\tau^2$ and finally
+        \[
+            \text{Var}(X) = \tau^2
+        \] 
+    \end{enumerate}
+\end{proof}
+
+\section*{4.9. Total probability}
+Show that the sum of all the probabilities in the Poisson distribution given
+in Eq. (4.40) equals 1, as we know it must. $\emph{Hint:}$ You will need to use
+Eq. (7.7) in Appendix B.
+
+\vspace{1em}
+
+\begin{proof}
+    The Poisson distribution is given by:
+    \begin{equation*}\tag{4.40}
+        P(k) = \frac{a^ke^{-a}}{k!}
+    \end{equation*}
+
+    Hence, the sum of all probabilities in the Poisson distribution is: 
+    \[
+        \sum_{i = 0}^\infty P(i) = \sum_{i = 0}^\infty   \frac{a^ie^{-a}}{i!} 
+        = \frac{1}{e^a} \sum_{i = 0}^\infty \frac{a^i}{i!}
+    \] 
+
+    By using the Taylor expansion of $e^x$ we notice that
+    \begin{equation*}\tag{7.7}
+        e^a = \sum_{i = 0}^\infty \frac{a^i}{i!}
+    \end{equation*}
+
+    so 
+    \[
+        \sum_{i = 0}^\infty P(i) = \frac{1}{e^a} e^a = 1
+    \] 
+\end{proof}
+
+\section*{4.10. Location of the maximum}
+For what (integer) value of $k$ is the Poisson distribution $P(k)$ maximum?
+
+\vspace{1em}
+
+\begin{proof}
+    If we rewrite the Poisson distribution's expression as:
+    \[
+        P(k) = \frac{a^k}{k!} e^{-a} = e^{-a} \prod_{i = 1}^k \bigg(\frac{a}{i}\bigg)
+    \] 
+
+    we see that since $e^{-a}$ is just a constant, $P(k)$ attains it's maximum 
+    value when the product expression is maximum. We see that we can split 
+    the product: 
+    \[
+        \prod_{i = 1}^{k} \bigg(\frac{a}{i}\bigg) = 
+        \bigg(\prod_{i = 1}^{\lfloor a \rfloor} \bigg(\frac{a}{i}\bigg)\bigg)
+        \bigg(\prod_{i = \lfloor a \rfloor + 1}^{k}\bigg(\frac{a}{i}\bigg)\bigg)
+    \] 
+
+    Since all the terms of the second product are in the interval $(0, 1]$, the value of the
+    second product is in $(0, 1]$ too. Therefore we have that:
+    \[
+        \prod_{i = 1}^{k} \bigg(\frac{a}{i}\bigg) \leq
+        \prod_{i = 1}^{\lfloor a \rfloor} \bigg(\frac{a}{i}\bigg)
+    \] 
+
+    By multiplying both sides by $e^{-a} > 0$ we get that for all $k$
+     \[
+         P(k) \leq P(\lfloor a \rfloor)
+    \] 
+    
+    As a result, the value $k$ for which the Poisson distribution $P(k)$ is maximum is
+    \[
+        \underset{k \in \mathbb{N}}{\mathrm{argmax}}\, P(k) = \lfloor a \rfloor
+    \] 
+\end{proof}
+
+\section*{4.11. Value of the maximum}
+For large $a$, what approximately is the height of the bump in the Poisson $P(k)$ 
+plot? You will need the result from the previous problem. $\emph{Hint:}$ You
+will also need to use Stirling's formula, given in Eq. (2.64) in Section 2.6.
+
+\vspace{1em}
+
+\begin{proof}
+    We say in the last exercise that the mode of the Poisson distribution is 
+    $\lfloor a \rfloor$, so the height of the plot's bump will be given by $P(\lfloor a \rfloor)$.
+    By taking $a \to \infty$, we have that the height of the bump is:
+    \[
+        \lim_{a \to \infty} P(\lfloor a \rfloor)
+        = \lim_{a \to \infty} \frac{a^{\lfloor a \rfloor} e^{-a}}{\lfloor a \rfloor!}
+    \] 
+
+    Since $\lfloor a \rfloor$ also goes to infinity, we can use Stirling's approximation 
+    \begin{equation*}\tag{2.64}
+        n! \approx n^n e^{-n} \sqrt{2\pi n}
+    \end{equation*}
+
+    to get rid of the factorial. Our expression becomes:
+    \[
+        \lim_{a \to \infty} P(\lfloor a \rfloor)
+        = \lim_{a \to \infty} \frac{a^{\lfloor a \rfloor} e^{-a}}{
+            {\lfloor a \rfloor}^{\lfloor a \rfloor} e^{-\lfloor a \rfloor} \sqrt{2\pi{\lfloor a \rfloor}}}
+            = \lim_{a \to \infty} \frac{1}{\sqrt{2\pi \lfloor a \rfloor}} = 0
+    \] 
+
+    We can see that for big values of $a$, the height of the
+    bump goes to 0. Informally, we can say 
+    that for big values of $a$ the maximum probability
+    is given approximately by:
+    \[
+        \max(P(k)) = P(\lfloor a \rfloor) \approx \frac{1}{\sqrt{2\pi\lfloor a \rfloor}}
+    \] 
+\end{proof}
+
+\section*{4.12. Expectation of the Poisson distribution}
+Use Eq. (3.4) to verify that the expectation value of the Poisson distribution
+equals $a$. This must be the case, of course, because $a$ is defined to be
+the expected number of events in the given interval.
+
+\vspace{1em}
+
+\begin{proof}
+    Let $X$ be a random variable that has a Poisson distribution, with $a > 0$.
+    By using Eq. (3.4), the expectation value of $X$ is given by:
+    \[
+        E[X] = \sum_{i = 0}^\infty x_i P(x_i) = \sum_{i = 1}^\infty  i P(i) 
+        = \sum_{i = 1}^\infty  \frac{i e^{-a} a^i}{i!}
+        = a \sum_{i = 1}^\infty  \frac{e^{-a} a^{i - 1}}{(i - 1)!}
+        = a \sum_{i = 1}^\infty  P(i - 1) = a \sum_{i = 0}^\infty P(i)
+    \] 
+
+    Since we know that the sum of probabilities must be 1, the expected value becomes:
+    \[
+        E[X] = a
+    \] 
+ 
+    proving our hypothesis.
+\end{proof}
+
+\section*{4.13. Variance of the Poisson distribution}
+As we saw in Problem 4.12, the expectation value of the Poisson distribution
+is $\mu = a$. Use the technique in the solution to that problem to show that
+the variance of the Poisson distribution is $a$ (which means that the standard
+deviation is $\sqrt{a}$). $\emph{Hint: }$ When finding the expectation value of
+$k^2$, it is easiest to find the expectation value of $k(k -1)$ and then
+add on the expectation value of $k$.
+
+\vspace{1em}
+
+\begin{proof}
+    Let $X$ be a random variable that has a Poisson distribution, with $a > 0$. We take the proposed 
+    hint and by using the linearity of expectation, we get that the variance of $X$ is given by:
+    \[
+        \text{Var}(X) = E[X^2] - a^2 = E[X^2 - X] + E[X] - a^2 = E[X^2 - X] + a - a^2
+    \] 
+
+    We compute $E[X^2 - X]$ separately and by using the fact that the probabilities sum
+    to 1, we obtain:
+    \begin{align*}
+        E[X^2 - X] = \sum_{i = 0}^\infty (x_i^2 - x_i) P(x_i) = \sum_{i = 2}^\infty  (i^2 - i) P(i) 
+        &= \sum_{i = 2}^\infty  i(i - 1) \frac{e^{-a}a^i}{i!}
+        = a^2\sum_{i = 2}^\infty  \frac{e^{-a}a^{i - 2}}{(i - 2)!} \\
+        &= a^2\sum_{i = 2}^\infty  P(i - 2) = a^2 \sum_{i = 0}^\infty P(i) = a^2
+    \end{align*}
+
+    As a result, the variance becomes:
+    \[
+        \text{Var}(X) = E[X^2 - X] + a - a^2 = a
+    \] 
+\end{proof}
+
+\section*{4.14. Poisson accuracy}
+In the "balls in boxes, again" example on page 213, we saw that in the right plot
+in Fig. 4.20, the Poisson distribution is an excellent approximation to the exact
+binomial distribution. But in the left plot, it is only a so-so approximation.
+What parameter(s) determine how good the approximation is?
+
+To answer this, we'll define the "goodness" of the approximation to be the ratio
+of the Poisson expression $P_P(k)$ in Eq. (4.40) to the exact binomial expression
+$P_B(k)$ in Eq. (4.32), with both  functions evaluated at the expected value of
+$k$, namely $a = pn$, which we'll assume is an integer. The closer the ratio
+$P_P(pn)/P_B(pn)$ is to 1, the better the Poisson approximation is. Calculate
+this ratio. You will need to use Stirling's formula, given in Eq. (2.64). You may
+assume that $n$ is large (because otherwise there wouldn't be a need to use
+the Poisson approximation).
+
+\vspace{1em}
+
+\begin{proof}
+    Our ratio is given by: 
+    \[
+        \frac{P_P(pn)}{P_B(pn)} = \frac{e^{-pn} (pn)^{pn}}{(pn)!} \cdot 
+            \frac{1}{\binom{n}{pn}p^{pn}(1 - p)^{n - pn}}
+            = \frac{e^{-pn} (pn)^{pn}}{(pn)!} \cdot \frac{(pn)!(n - pn)!}{n! p^{pn} (1-p)^{n - pn}} 
+            = \frac{e^{-pn} n^{pn}(n - pn)!}{n!(1 - p)^{n - pn}}
+    \] 
+
+    We consider $n$ to be large and use Sterling's formula, so the ratio becomes
+    \begin{align*}
+        \frac{P_P(pn)}{P_B(pn)} 
+        &= \frac{e^{-pn}n^{pn}(n - pn)^{n - pn}e^{pn - n} \sqrt{2\pi(n - pn)}}
+            {n^ne^{-n}(1 - p)^{n - pn}\sqrt{2\pi n}}
+        = \frac{n^{pn - n}(n - pn)^{n - pn}\sqrt{n - pn}}{(1 - p)^{n - pn}\sqrt{n}} \\
+        &= \frac{n^{pn - n} n^{n - pn}(1 - p)^{n - pn}\sqrt{n}\sqrt{1 - p}}{(1 - p)^{n - pn}\sqrt{n}} 
+        = \sqrt{1 - p}
+    \end{align*}
+
+    Therefore, the $p$ is the parameter that decides how good the approximation is.
+\end{proof}
+
+\section*{4.15. Bump or no bump}
+In Fig. 4.21, we saw that $P(0) = P(1)$ when $a = 1$. (This is the cutoff between the distribution
+having or not having a bump.) Explain why this is consistent with what we noted about
+the binomial distribution (namely, that $P(0) = P(1)$ when $p = 1 / (n + 1)$) in the example 
+in Section 4.5.
+
+\vspace{1em}
+
+\begin{proof}
+    If we consider the equation $P(0) = P(1)$, we easily reach the conclusion that this happens for 
+    $a = 1$ :
+    \[
+        P(0) = P(1) \iff \frac{e^{-a}a^0}{0!} = \frac{e^{-a}a^1}{1!} \iff e^{-a} a = e^{-a} \iff a = 1
+    \] 
+
+    To explain why this is consistent with the binomial distribution result, we consider
+    the Poisson distribution as a special case of the binomial distribution. 
+    Therefore, we consider the same setup from Section 4.7.2 where we derived the continuous case
+    of the Poisson distribution. As a result, $\lambda$ will be the average rate of events
+    and $\epsilon \to 0, n \to \infty$. By seeing that $p = \lambda \epsilon$ and $n = t \epsilon^{-1}$, 
+    and then letting $a = \lambda t$, we concluded that:
+    \[
+        B_{n, p}(k) = \binom{n}{k} p^k (1 - p)^k 
+        = \binom{n}{k} (\lambda \epsilon)^k (1 - \lambda \epsilon)^{n - k} 
+        = \frac{(\lambda t)^k e^{-\lambda t}}{k!}
+        = \frac{a^k e^{-a}}{k!}
+        = P(k)
+    \] 
+
+    In Section 4.5 we saw that $B_{n, p}(0) = B_{n, p}(1)$ for $p = \frac{1}{n + 1}$. 
+    By translating $p$ and $n$ with the proposed forms, the expression becomes:
+    \[
+        B_{n, p}(0) = B_{n, p}(1) 
+        \iff \lambda \epsilon = \frac{1}{t \epsilon^{-1} + 1}
+        \iff \lambda = \frac{1}{t + \epsilon}
+            \iff \lambda t = \frac{1}{1 + \epsilon t^{-1}}
+    \]
+
+    By using the fact that $a = \lambda t$ and  $\epsilon \to 0$, we get that $P(0) = P(1)$ 
+    for 
+    \[
+        a = \lim_{\epsilon \to 0} \frac{1}{1 + \epsilon t^{-1}} = 1
+    \] 
+\end{proof}
+
+\section*{4.16. Typos}
+A hypothetical writer has an average of one type per 50 pages of work. What is the
+probability that there are no typos in a 350-page book?
+
+\vspace{1em}
+
+\begin{proof}
+    If we let $X$ represent the number of mistakes, we see that this number is 
+    modeled after the Poisson distribution. Since the writer makes on average 1 
+    mistake per 50 pages of work, this means that the average rate of this happening 
+    is $\lambda = \frac{1}{50}$. We analyze the number of mistakes in a 350 page book, 
+    so our the rate parameter is $a = 350\lambda = 7$. The probability that
+    no mistakes are made is now given by:
+    \[
+        P(X = 0) = \frac{7^0 e^{-7}}{0!} = e^{-7} \approx 0.00091
+    \] 
+\end{proof}
+
+\section*{4.17. Boxes with zero balls}
+You randomly throw $n$ balls into 1000 boxes and note the number of boxes
+that end up with zero balls in them. If you repeat this process a large number
+of times and observe that the average number of boxes with zero balls is 20,
+what is $n$? 
+
+\vspace{1em}
+
+\begin{proof}
+    We can assume without loss of generality that the boxes are ordered.
+    Let $X_i$ represent the status of the $i$th box after 1000 throws, as
+    in empty (1) or not (0). Assuming that boxes are equally likely to be thrown in
+    (so $\frac{1}{1000}$), the probability of the $i$th box being empty after 1 throw 
+    is obviously $p = \frac{999}{1000}$. In the case of $n$ throws, we get that
+    \[
+        p(X_i = \text{empty}) = p^{1000} = \bigg(\frac{999}{1000}\bigg)^n
+    \] 
+
+    Now, let $Y$ be the number of empty boxes after 1000 throws. We observe that
+    in this context,
+    \[
+        Y = X_1 + X_2 + \ldots + X_{1000} = \sum_{i = 1}^{1000} X_i
+    \] 
+
+    As a result, by using linearity of expectation and the fact that $X_1, X_2 \ldots$
+    are equally distributed, we get that:
+    \[
+        E[Y] = \sum_{i = 1}^{1000} E[X_i] = 
+        \sum_{i = 1}^{1000} \bigg[\frac{n}{1000} \cdot 0 + \bigg(\frac{999}{1000}\bigg)^n \cdot 1\bigg]
+        = 1000 \bigg(\frac{999}{1000}\bigg)^n
+    \] 
+
+    We know that the expected number of empty boxes after 1000 throws is 20,
+    which here means that $E[Y] = 20$, so:
+    \[
+        1000\bigg(\frac{999}{1000}\bigg)^n = 20
+    \] 
+
+    By dividing both sides by $1000$, taking the natural logarithm of
+    both sides and then keeping $n$ on the left side, we obtain the 
+    desired result:
+     \[
+         n = \frac{\ln 50}{\ln 1000 - \ln 999} \approx 3910
+    \] 
+\end{proof}
+
+\section*{4.18. Twice the events}
+\begin{enumerate}[(a)]
+    \item Assume that on average, the events in a random process happen $a$ times,
+        where $a$ is large, in a given time interval $t$. With the notation
+        $P_a(k)$ representing the Poisson distribution, use Stirling's formula
+        to produce an approximate expression for the probability $P_a(a)$ that
+        exactly $a$ events happen during the time $t$.
+
+    \item Consider the probability that exactly $\emph{twice}$ the number of events,
+        $2a$, happen during $\emph{twice}$ the time, $2t$. What is the ratio
+        of this probability to $P_a(a)$?
+
+    \item Consider the probability that exactly $\emph{twice}$ the number of events,
+        $2a$, happen during the same time $t$. What is the ratio
+        of this probability to $P_a(a)$?
+\end{enumerate}
+
+\vspace{1em}
+
+\begin{proof}
+    The needed expression are easily obtained by matching the given information with
+    the corresponding Poisson expression and then using Sterling's formula to approximate
+    the factorials (which can be done because $a!$ is large).
+
+    \begin{enumerate}[(a)]
+        \item By simply using the expression of the Poisson distribution and
+            then using Sterling's formula, we get:
+            \[
+                P_a(a) = \frac{a^a e^{-a}}{a!} = \frac{a^a e^{-a}}{a^a e^{-a} \sqrt{2 \pi a}} 
+                = \frac{1}{\sqrt{2 \pi a}}
+            \] 
+
+        \item Because the rate of change must be constant over time, in the time $2t$ 
+            we'll have on average $2a$ events, therefore the needed expression is
+            given by:
+            \[
+                P_{2a}(2a) = \frac{(2a)^{2a} e^{-2a}}{(2a)!} 
+                = \frac{(2a)^{2a} e^{-2a}}{(2a)^{2a} e^{-2a} \sqrt{4\pi a}} 
+                = \frac{1}{\sqrt{4\pi a}}
+            \] 
+
+            As a result, the ratio between this and $P_a(a)$ is
+             \[
+                 \frac{P_{2a}(2a)}{P_a(a)} = \frac{1}{\sqrt{2}}
+            \] 
+
+        \item The average rate of events remains the same, so our probability is:
+            \[
+                P_a(2a) = \frac{a^{2a} e^{-a}}{(2a)!}
+                = \frac{a^{2a} e^{-a}}{(2a)^{2a} e^{-2a} \sqrt{4\pi a}} 
+                = \bigg(\frac{e}{4}\bigg)^{a} \frac{1}{\sqrt{4\pi a}}
+            \] 
+
+            Therefore, the ratio between this and $P_a(a)$ is
+            \[
+                \frac{P_a(2a)}{P_a(a)} = \frac{1}{\sqrt{2}} \bigg(\frac{e}{4}\bigg)^a
+            \] 
+    \end{enumerate}
+\end{proof}
+
+\section*{4.20. Probability of at least 1}
+A million balls are thrown at random into a billion boxes.
+Consider a particular one of the boxes. What (approximately)
+is the probability that $\emph{at least one}$ ball ends
+up in that box? Solve this by:
+\begin{enumerate}[(a)]
+    \item using the Poisson distribution in Eq. (4.40); you will
+        need to use the approximation in Eq. (7.9)
+
+    \item working with probabilities from scratch; you will need
+        to use the approximation in Eq. (7.14).
+\end{enumerate}
+Note that since the probability you found is very small, it is
+also approximately the probability of obtaining $\emph{exactly one}$ 
+ball in the given box, because multiple events are extremely rare;
+see the discussion in the first remark in Section 4.6.2.
+
+\vspace{1em}
+
+\begin{proof}
+    For both solutions, we choose a box and computing the probability that
+    no ball ends up in that box. Let $X$ represent the number of balls
+    being thrown in that box after one million throws. We also assume that 
+    is equally likely for a throw to go in any box, so let that probability
+    be $p = 10^{-9}$.
+
+    \begin{enumerate}[(a)]
+        \item Since we have a million throws and the probability that 
+            a ball is thrown in our box is $p$, the average rate
+            of this happening is given by $a = 10^6 p= 10^{-3}$.
+            Therefore, the probability that no ball is thrown
+            in the chosen box is:
+            \[
+                P(X = 0) = \frac{e^{-a}a^0}{0!} = e^{-a} = e^{-10^{-3}}
+            \] 
+            
+            Because $10^{-3}$ is relatively small, we can use the fact that
+            $e^x \approx 1 + x$ for small $x$, to obtain
+            \[
+                P(X = 0) \approx 1 - 10^{-3}
+            \] 
+
+            Finally, the probability that at least one ball is thrown
+            into the box is given by:
+            \[
+                P(X \geq 1) = 1 - P(0) \approx 10^{-3}
+            \] 
+
+        \item If we consider a throw to be represented as a Bernoulli trial where
+            a throw in our box is a failure and a throw in another box is a
+            success, then $X$ is modeled after the corresponding binomial distribution.
+            Therefore, the probability that no balls are thrown in our box is:
+            \[
+                P(X = 0) = \text{Bin}(0, 10^6, p) = \binom{10^6}{0} p^0 (1 - p)^{10^6}
+                = (1 - p)^{10^6}
+            \] 
+
+            Since $p$ is relatively small, we can use the fact that $(1 + a)^n \approx e^{na}$, for
+            a small $a$, to get that:
+            \[
+                P(X = 0) \approx e^{p10^6} = e^{10^{-3}}
+            \] 
+
+            Analogously to (a), we use the $e^x \approx 1 + x$ approximation and find
+            the probability that at least one ball is thrown into the box:
+            \[
+                P(X \geq 1) = 1 - P(X = 0) \approx 10^{-3}
+            \] 
+    \end{enumerate}
+\end{proof}
+
+\section*{4.21. Comparing probabilities (FIX)}
+\begin{enumerate}[(a)]
+    \item A hypothetical 1000-sided die is rolled three times. What is the probability
+        that a given number (say, 1) shows up all three times?
+
+    \item A million balls are thrown at random into a billion boxes. (So from 
+        the result in Problem 4.20, the probability that exactly 
+        one ball ends up in a given box is approximately 1/1000.)
+        If this process (of throwing a million balls into a billion
+        boxes) is performed three times, what (approximately) is the probability
+        that exactly one ball lands in a given box all three times?
+        (It can be a different ball each time.)
+
+    \item A million balls are thrown at random into a billion boxes. This process
+        is performed a $\emph{single}$ time. What (approximately) is the 
+        probability that exactly three balls end up in a given box?
+        Solve this from scratch by using a counting argument.
+
+    \item Solve part (c) by using the Poisson distribution.
+
+    \item The setups in parts (b) and (c) might seem basically the same,
+        because both setups involve three balls ending up in the given
+        box, and there is a 1/b = 1/10$^9$ probability that any given ball
+        ends up in the given box. Give an intuitive explanation
+        for why the answers differ.
+\end{enumerate}
+
+\vspace{1em}
+
+\begin{proof}
+    \hfill
+    \begin{enumerate}[(a)]
+        \item Considering that each die side is equally likely to be rolled
+            with a probability of 1/1000, the probability that a given
+            number shows in all three throws is simply:
+            \[
+                p_1 = \bigg(\frac{1}{1000}\bigg)^3 = 10^{-9}
+            \] 
+
+        \item Since we know that the Problem 4.20 that the probability
+            of exactly one ball ending up in a given box is approximately
+            1/1000, using the same heuristic as in (a), the probability
+            that this is performed in all three times is:
+            \[
+                p_2 = \bigg(\frac{1}{1000}\bigg)^3 = 10^{-9}
+            \] 
+        \item Without loss of generality we assume that each box has an 
+            index. Therefore, a ball throw is equivalent with choosing
+            one such index. Since each process consists of choosing one
+            million box indexes with repetition, the number of total possible outcomes
+            of the process is given by:
+            \[
+                T = \binom{10^9 + 10^6 - 1}{10^6}
+            \] 
+
+            Now, we compute the number of process outcomes where exactly
+            three balls end up in a given box. Because the order of throws
+            does not matter, this number is equivalent with the number of process outcomes 
+            where we "remove" the chosen box and consider that three of our throws were in that box.
+            So,
+            \[
+                T_3 = \binom{10^9 - 1 + 10^6 - 3 - 1}{10^6 - 3} = \binom{10^9 + 10^6 - 5}{10^6 - 3}
+            \] 
+
+            As a result, the probability that exactly 3 balls are thrown into a specific
+            box is given by:
+            \[
+                p_3 = \frac{T_3}{T} = \binom{10^9 + 10^6 - 5}{10^6 - 3} \binom{10^9 + 10^6 - 1}{10^6}^{-1}
+                    \approx 9.96 \cdot 10^{-10}
+            \] 
+
+        \item We throw one million balls and the probability that one throw goes in a specific box
+            is 10$^{-9}$, so the average rate of event is $a = 10^6 \cdot 10^{-9} = 10^{-3}$.
+            Then, the probability that exactly 3 balls are thrown in a given box is simply:
+            \[
+                P(3) = \frac{a^3 e^{-a}}{3!} = \frac{1}{6} 10^{-9} e^{-10^{-3}} \approx 1.665 \cdot 10^{-10}
+            \] 
+    \end{enumerate}
+\end{proof}
+
+\section*{4.22. Area under a Gaussian curve}
+Show that the area (from $-\infty$ to $\infty$ ) under the Gaussian
+distribution, $f(x) = \sqrt{b/\pi} e^{-bx^2}$, equals 1. That is,
+show that the total probability equals 1. (We have set
+$\mu = 0$ for convenience, since $\mu$ doesn't affect
+the total area.) There is a very sneaky way to do this.
+But since it's completely out of the blue, we'll give
+a hint: Calculate the $\emph{square}$ of the desired integral by multiplying
+it by the integral of $\sqrt{b/\pi} e^{-by^2}$. Then make use of a change 
+of variables from Cartesian to polar coordinates, to convert
+the Cartesian double integral into a polar double integral.
+
+\vspace{1em}
+
+\begin{proof}
+    The area under the curve of the Gaussian is given by:
+    \[
+        I = \int_{-\infty}^\infty f(x) dx = \sqrt{\frac{b}{\pi}} \int_{-\infty}^\infty e^{-bx^2} dx
+    \] 
+    We take the proposed hint and obtain that:
+    \[
+        I^2 = \bigg(\sqrt{\frac{b}{\pi}} \int_{-\infty}^\infty e^{-bx^2} dx\bigg)
+            \bigg(\sqrt{\frac{b}{\pi}} \int_{-\infty}^\infty e^{-by^2} dy\bigg)
+        = \frac{b}{\pi} \int_{-\infty}^\infty \int_{-\infty}^\infty e^{-b(x^2 + y^2)} dxdy
+    \] 
+    Now, we convert to polar coordinates by using the substitutions
+    $x = r\sin \theta, y = r\cos \theta$ and get:
+    \[
+        I^2 = \frac{b}{\pi} \int_0^{2\pi} \int_0^\infty e^{-br^2} r drd\theta
+    \] 
+    We compute the inner integral separately by using the substitution
+    $t = r^2$, so:
+    \[
+        \int_0^\infty e^{-br^2}r dr 
+        = \frac{1}{2} \int_0^\infty e^{-bt} dt 
+        = -\frac{e^{-bt}}{2b} \bigg|_0^\infty
+        = \frac{1}{2b}
+    \] 
+    Our expression becomes:
+    \[
+        I^2 = \frac{1}{2\pi} \int_0^{2\pi} d\theta = 1
+    \] 
+    Therefore, we proved that the Gaussian distribution is normalized:
+    \[
+        I = \int_0^\infty f(x) = 1
+    \] 
+\end{proof}
+
+\section*{4.23. Variance of the Gaussian distribution}
+Show that the variance of the second Gaussian expression in Eq. (4.42)
+equals $\sigma^2$. You may assume that $\mu = 0$ (because $\mu$ doesn't
+affect the variance), in which case the expression for the variance
+in Eq. (3.19) becomes $E(X^2)$. And then by the reasoning in
+Problem 4.2, this expectation value is $\int x^2f(x)dx$. So the
+task of this problem is to evaluate this integral. The straightforward method
+is to use integration by parts.
+
+\vspace{1em}
+
+\begin{proof}
+    We follow the hint and use integration by parts, so:
+    \begin{align*}
+        E[X^2] 
+        = \int_{-\infty}^\infty x^2 f(x) dx 
+        = \sqrt{\frac{b}{\pi}} \int_{-\infty}^\infty x^2 e^{-bx^2} dx
+        &= \sqrt{\frac{b}{\pi}} \int_{-\infty}^\infty x \big(xe^{-bx^2}\big) dx
+        = \sqrt{\frac{b}{\pi}} \int_{-\infty}^\infty x \bigg(-\frac{1}{2b}e^{-bx^2}\bigg)' dx \\
+        &= -\frac{1}{2} \sqrt{\frac{b}{\pi}} xe^{-bx^2} \bigg|_{-\infty}^\infty 
+            + \frac{1}{2b} \sqrt{\frac{b}{\pi}} \int_{-\infty}^\infty e^{-bx^2} dx
+    \end{align*}
+
+    One can easily prove using L'Hopital's rule that 
+    \[
+        \lim_{x \to \infty} xe^{-bx^2} = \lim_{x \to -\infty} xe^{-bx^2} = 0
+    \] 
+
+    Therefore the first term in the result is 0. Since we know that
+    the Gaussian distribution is normalized from Problem 4.22, we obtain that
+    \[
+        E[X^2] = \frac{1}{2b} \sqrt{\frac{b}{\pi}} \int_{-\infty}^\infty e^{-bx^2} dx 
+        = \frac{1}{2b} 
+        = \sigma^2
+    \] 
+\end{proof}

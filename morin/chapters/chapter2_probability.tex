@@ -1,6 +1,7 @@
-\chapter*{2. Probability}
+\chapter{Probability}
 
 \section*{2.2. Rules for three events}
+\addcontentsline{toc}{section}{2.2. Rules for three events}
 \begin{enumerate}[(a)]
     \item Consider three events, $A$, $B$, and $C$. 
         If they are all independent of each other,
@@ -74,6 +75,7 @@
 \end{proof}
 
 \section*{2.7. Proofreading}
+\addcontentsline{toc}{section}{2.7. Proofreading}
 Two people each proofread the same book. One person finds 100 errors, and the other finds 60. 
 There are 20 errors common to both people. Assume that all errors are equally likely to be found (which is 
 undoubtedly not true in practice), and also that the discovery of an error by a person is independent
@@ -104,6 +106,7 @@ of each person finding a given error.
 \end{proof}
 
 \section*{2.9. Sock pairs}
+\addcontentsline{toc}{section}{2.9. Sock pairs}
 \begin{enumerate}[(a)]
     \item Four red socks and four blue socks are in a drawer. You reach in and pull out two socks at random.
         What is the probability that you obtain a matching pair?
@@ -144,7 +147,8 @@ of each person finding a given error.
     \end{enumerate}
 \end{proof}
 
-\section*{2.11 At least one 6}
+\section*{2.11. At least one 6}
+\addcontentsline{toc}{section}{2.11. At least one 6}
 Three dice are rolled. What is the probability of obtaining at least one 6? We solved
 this in Section 2.3.1, but your task here is to solve it the long way, by adding up the
 probabilities of obtaining exactly one, two, or three 6's.
@@ -164,6 +168,7 @@ probabilities of obtaining exactly one, two, or three 6's.
 \end{proof}
 
 \section*{2.15 My birthday}
+\addcontentsline{toc}{section}{2.15. My birthday}
 \begin{enumerate}[(a)]
     \item You are in a room with 100 other people. Let $p$ be the probability that at least one
         of these 100 people has your birthday. Without doing any calculations, state whether $p$ 
@@ -192,6 +197,7 @@ probabilities of obtaining exactly one, two, or three 6's.
 \end{proof}
 
 \section*{2.16. My birthday, again}
+\addcontentsline{toc}{section}{2.16. My birthday, again}
 We saw at the end of Section 2.4.1 that 253 is the answer to the question, "How many people (in addition to
 me) need to be present in order for there to be at least a 1/2 chance that someone else has $\emph{my}$ 
 birthday?" We solved this by finding the smallest $n$ for which $(364/365)^n$ is less than 1/2. Answer
@@ -260,6 +266,7 @@ in the general case where there are N days in a year instead of 365? Assume N is
 \end{proof}
 
 \section*{2.18. A random game-show host}
+\addcontentsline{toc}{section}{2.18. A random game-show host}
 Consider the following variation of the Game-Show Problem we discussed in Section 2.4.2. A game-show
 host offers you the choice of three doors. Behind one of these doors is the grand prize, and behind
 the other two are goats. The host announces that after you select a door (without opening it), he will
@@ -282,9 +289,9 @@ not matter?
     \begin{table}[h]
         \centering
         \begin{tabular}{cc}
-            PG_H G & PGG_H \\ 
-            GP_HG & GPG_H \\
-            GG_HP & GGP_H
+            $PG_H G$ & $PGG_H$ \\ 
+            $GP_HG$ & $GPG_H$ \\
+            $GG_HP$ & $GGP_H$
         \end{tabular}
     \end{table}
 
@@ -296,6 +303,7 @@ not matter?
 \end{proof}
 
 \section*{2.19. Boy girl problem with general information}
+\addcontentsline{toc}{section}{2.19. Boy girl problem with general information}
 This problem is an extension of the Boy/Girl problem from Section 2.4.4. You should study that 
 problem thoroughly before tackling this one. As in the original version of the problem, assume
 that all processes are completely random. The new variation is the following:
@@ -327,10 +335,10 @@ analogous to the tables in Section 2.4.4.
     \begin{table}[h]
         \centering
         \begin{tabular}{c c c c}
-            B_CB_C & B_CG_C & G_CB_C & G_CG_C \\
-            B_CB & B_CG & G_CB & G_CB \\
-            BB_C & BG_C & GB_C & GG_C \\
-            BB & BG & BB & GG
+            $B_CB_C$ & $B_CG_C$ & $G_CB_C$ & $G_CG_C$ \\
+            $B_CB$ & $B_CG$ & $G_CB$ & $G_CB$ \\
+            $BB_C$ & $BG_C$ & $GB_C$ & $GG_C$ \\
+            $BB$ & $BG$ & $BB$ & $GG$
         \end{tabular}
     \end{table}
 
@@ -349,13 +357,12 @@ analogous to the tables in Section 2.4.4.
     \pagebreak
 
     Now, we find that the groups that contain at least one boy who has the characteristic are:
-
     \begin{table}[h]
         \centering
         \begin{tabular}{c c c}
-            B_CB_C & B_CG_C & G_CB_C \\
-            B_CB & B_CG & \\
-            BB_C & & GB_C & \\
+            $B_CB_C$ & $B_CG_C$ & $G_CB_C$ \\
+            $B_CB$ & $B_CG$ & \\
+            $BB_C$ & & $GB_C$ \\
         \end{tabular}
     \end{table}
 
@@ -392,6 +399,7 @@ analogous to the tables in Section 2.4.4.
 \end{proof}
 
 \section*{2.20. A second test}
+\addcontentsline{toc}{section}{2.20. A second test}
 Consider the setup in the "False positives" example in Section 2.5. If we instead perform 
 $\emph{two}$ successive tests on each person, what is the probability that a person
 who tests positive both times actually has the disease?
@@ -415,7 +423,7 @@ who tests positive both times actually has the disease?
     \begin{enumerate}
         \item The person has the disease, and the tests were positive results.
             The probability of a positive result for a diseased person is 90\%.
-            Therefore the probability of a diseased person being diagnosticated twice
+            Therefore the probability of a diseased person being diagnosed twice
             as positive is $95\% \cdot 95\% = 90.25\%$. 2\% of the population is diseased,
             so the number of diseased persons that are tested twice as positive is 
             $2\%N \cdot 90.25\% = 1.805\%N$.
@@ -432,5 +440,5 @@ who tests positive both times actually has the disease?
     is:
     \[
         \frac{1.805\%N}{1.805\%N + 0.98\%N} = \frac{1.805\%N}{2.785\%N} \approx 0.6481 = 64.81\%
-    \]
+    \] 
 \end{proof}

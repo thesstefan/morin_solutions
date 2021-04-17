@@ -1,6 +1,7 @@
 \chapter{Combinatorics}
 
 \section*{1.1. Assigning seats}
+\addcontentsline{toc}{section}{1.1. Assigning seats}
 Six girls and four boys are to be assigned to ten seats in a row, with the stipulations
 that a girl sits in the third seat and a boy sits in the eighth seat. How many arrangements
 are possible?
@@ -25,6 +26,7 @@ are possible?
 \end{proof}
 
 \section*{1.2. Number of outcomes}
+\addcontentsline{toc}{section}{1.2. Number of outcomes}
 One person rolls two six-sided dice, and another person flips six two-sided coins.
 Which setup has the larger number of possible outcomes, assuming that the order matters?
 
@@ -35,6 +37,7 @@ Which setup has the larger number of possible outcomes, assuming that the order 
 \end{proof}
 
 \section*{1.3. Subtracting the repeats}
+\addcontentsline{toc}{section}{1.3. Subtracting the repeats}
 \begin{enumerate}[(a)]
     \item From Eq. (1.6) we know that the number of ordered sets of three people chosen from five people
         is $5 \cdot 4 \cdot 3 = 60$. Reproduce this result by starting with the naive answer of $5^3 = 125$
@@ -61,6 +64,7 @@ Which setup has the larger number of possible outcomes, assuming that the order 
 \end{proof}
 
 \section*{1.4. Subtracting the repeats, again}
+\addcontentsline{toc}{section}{1.4. Subtracting the repeats, again}
 Repeat the task of Problem 1.3(a), but now in the case where you pick quadruplets (instead of triplets)
 from five people.
 
@@ -98,6 +102,7 @@ from five people.
 \vspace{1em}
 
 \section*{1.6. Many ways to count}
+\addcontentsline{toc}{section}{1.6. Many ways to count}
 How many different orderings are there of the six letters: A, A, A, B, B, C? \\
 How many different ways can you think of to answer this question?
 
@@ -109,19 +114,20 @@ How many different ways can you think of to answer this question?
     $\binom{3}{2} = 3$ modes. Since the C letter has the last position, we find that the number of possible
     orderings is now $20 \cdot 3 = 60$.
 
-    The same method can be applied for any ordering of letter-possition assignments (e.g. we choose the 
+    The same method can be applied for any ordering of letter-position assignments (e.g. we choose the 
     possible positions of B and then of A and C). We'll get different formulas, but the result will be the
     same. There are $3 \cdot 2 = 6$ such ways of computing the number of possible orderings.
 \end{proof}
 
-\section*{1.7. Commitees with a president}
+\section*{1.7. Committees with a president}
+\addcontentsline{toc}{section}{1.7. Committees with a president}
 Two students are given the following problem: From $N$ people, how many ways are there to choose a committee
 of $n$ people, with one person chosen as the president? One student gives an answer of $n\binom{N}{n}$, while
 the other student gives an answer of $N\binom{N-1}{n-1}$.
 
 \begin{enumerate}[(a)]
     \item By writing out the binomial coefficients, show that the two answers are equal.
-    \item Explain the (valid) reasonings that lead to these two (correct) answers.
+    \item Explain the (valid) reasoning that lead to these two (correct) answers.
 \end{enumerate}
 
 \vspace{1em}
@@ -137,13 +143,14 @@ the other student gives an answer of $N\binom{N-1}{n-1}$.
         \item The president can be chosen in $N$ ways and then the rest of the group can be chosen in 
             $\binom{N-1}{n-1}$ modes, giving us $N\binom{N-1}{n-1}$ ways to form the committee.
 
-            Without thinking about the president, the commitee can be chosen in $\binom{N}{n}$ ways. In 
+            Without thinking about the president, the committee can be chosen in $\binom{N}{n}$ ways. In 
             such a committee any of the $n$ persons can be chosen as the president. Therefore, we have 
             $n\binom{N}{n}$ ways to form the committee.
     \end{enumerate}
 \end{proof}
 
 \section*{1.8. Multinomial coefficients}
+\addcontentsline{toc}{section}{1.8. Multinomial coefficients}
 \begin{enumerate}[(a)]
     \item A group of ten people are divided into three committees. Three people are on committee
         A, two are on committee B, and five are on committee C. How many different ways are there 
@@ -183,6 +190,7 @@ the other student gives an answer of $N\binom{N-1}{n-1}$.
 \end{proof}
 
 \section*{1.9. One heart and one 7}
+\addcontentsline{toc}{section}{1.9. One heart and one 7}
 How many different five-card poker hands contain exactly one heart and exactly one 7? (If the hand
 contains the 7 of hearts, then this one card satisfies both requirements.)
 
@@ -206,6 +214,7 @@ contains the 7 of hearts, then this one card satisfies both requirements.)
 
 
 \section*{1.14. Yahtzee}
+\addcontentsline{toc}{section}{1.14. Yahtzee}
 In the game of Yahtzee, five dice are rolled in a group, with the order not mattering.
 
 \begin{enumerate}[(a)]
@@ -297,6 +306,7 @@ In the game of Yahtzee, five dice are rolled in a group, with the order not matt
 \end{proof}
 
 \section*{1.16. Pascal sum 2}
+\addcontentsline{toc}{section}{1.16. Pascal sum 2}
 At the end of Section 1.8.3, we demonstrated the relation 
 $\binom{n}{k} = \binom{n - 1}{k - 1} + \binom{n - 1}{k}$
 by using the argument involving committees. Repeat this reasoning,
@@ -348,6 +358,7 @@ but now in terms of:
 \end{proof}
 
 \section*{1.17. Pascal diagonal sum}
+\addcontentsline{toc}{section}{1.17. Pascal diagonal sum}
 \begin{enumerate}[(a)]
     \item If we pick an unordered committee of three people from five people (A, B, C, D, E),
         we can list the $\binom{5}{3} = 10$ possibilities as shown in Table 1.19.

@@ -1,0 +1,13 @@
+# Fdb version 3
+["pdflatex"] 1613843597 "chapter1_combinatorics.tex" "build/chapter1_combinatorics.pdf" "chapter1_combinatorics" 1613843597
+  "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1607249373 3524 cb3e574dea2d1052e39280babc910dc8 ""
+  "/usr/share/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1607249373 1328 c834bbb027764024c09d3d2bf908b5f0 ""
+  "/usr/share/texmf-dist/fonts/tfm/public/cm/cmti10.tfm" 1607249373 1480 aa8e34af0eb6a2941b776984cf1dfdc4 ""
+  "/usr/share/texmf-dist/web2c/texmf.cnf" 1607249373 33301 a3134070eacafb10b1f371612ce2650d ""
+  "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1612567461 334353 c825108cbc13fa4a18a274c473196142 ""
+  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1612567460 2635855 27f13d50ebdaee480649aa06e45bd0aa ""
+  "build/chapter1_combinatorics.aux" 1613843435 8 a94a2480d3289e625eea47cd1b285758 ""
+  "chapter1_combinatorics.tex" 1613843595 20687 9714db8006746c4f82bc5399160f078b ""
+  (generated)
+  "build/chapter1_combinatorics.pdf"
+  "build/chapter1_combinatorics.log"

@@ -1,0 +1,10 @@
+PWD /home/stefan/gbook/morin/chapters
+INPUT /usr/share/texmf-dist/web2c/texmf.cnf
+INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
+INPUT chapter1_combinatorics.tex
+OUTPUT build/chapter1_combinatorics.log
+INPUT /usr/share/texmf-dist/fonts/map/fontname/texfonts.map
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
+OUTPUT build/chapter1_combinatorics.pdf
+INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmti10.tfm

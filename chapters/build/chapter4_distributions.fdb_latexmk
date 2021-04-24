@@ -1,0 +1,12 @@
+# Fdb version 3
+["pdflatex"] 1616716240 "chapter4_distributions.tex" "build/chapter4_distributions.pdf" "chapter4_distributions" 1616716240
+  "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1607249373 3524 cb3e574dea2d1052e39280babc910dc8 ""
+  "/usr/share/texmf-dist/fonts/tfm/public/cm/cmti10.tfm" 1607249373 1480 aa8e34af0eb6a2941b776984cf1dfdc4 ""
+  "/usr/share/texmf-dist/web2c/texmf.cnf" 1607249373 33301 a3134070eacafb10b1f371612ce2650d ""
+  "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1614767953 334353 c825108cbc13fa4a18a274c473196142 ""
+  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1614767940 2635855 bafff1825f250b5c60d0dcea82f0faef ""
+  "build/chapter4_distributions.aux" 1616704419 8 a94a2480d3289e625eea47cd1b285758 ""
+  "chapter4_distributions.tex" 1616716239 37819 b6496ef793aa9b1a066a8f0e51459749 ""
+  (generated)
+  "build/chapter4_distributions.pdf"
+  "build/chapter4_distributions.log"
